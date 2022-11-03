@@ -3,7 +3,7 @@ package com.example.ing_soft.model;
 import javax.persistence.*;
 
 @Entity
-public class Metodo_pago {
+public class MetodoPago {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY )
     int id_pago;

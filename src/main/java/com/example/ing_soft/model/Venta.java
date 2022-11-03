@@ -14,7 +14,7 @@ public class Venta {
     @JoinColumn(name = "rut")
     private Usuario usuario;
     @JoinColumn(name = "id_pago")
-    private Metodo_pago metodo_pago;
+    private MetodoPago metodo_pago;
     public int getId_venta() {
         return id_venta;
     }
@@ -45,10 +45,10 @@ public class Venta {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public Metodo_pago getMetodo_pago() {
+    public MetodoPago getMetodo_pago() {
         return metodo_pago;
     }
-    public void setMetodo_pago(Metodo_pago metodo_pago) {
+    public void setMetodo_pago(MetodoPago metodo_pago) {
         this.metodo_pago = metodo_pago;
     }
     
