@@ -9,7 +9,7 @@ CREATE TABLE Usuario
   PRIMARY KEY (rut)
 );
 
-CREATE TABLE producto
+CREATE TABLE Producto
 (
   id_producto INT NOT NULL,
   precio INT NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE Categoria
   PRIMARY KEY (id_categoria)
 );
 
-CREATE TABLE bodega
+CREATE TABLE Bodega
 (
   id_bodega INT NOT NULL,
   ubicacion VARCHAR(70) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE Pertenece
   FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria)
 );
 
-CREATE TABLE existe_en
+CREATE TABLE Existe
 (
   stock_bod INT NOT NULL,
   id_producto INT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE existe_en
   FOREIGN KEY (id_bodega) REFERENCES bodega(id_bodega)
 );
 
-CREATE TABLE Tiene_permiso
+CREATE TABLE TienePermiso
 (
   rut VARCHAR(10) NOT NULL,
   id_permiso INT NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE Tiene_permiso
   FOREIGN KEY (id_permiso) REFERENCES Permiso(id_permiso)
 );
 
-CREATE TABLE Metodo_pago
+CREATE TABLE MetodoPago
 (
   id_pago INT NOT NULL,
   nombre VARCHAR(40) NOT NULL,
