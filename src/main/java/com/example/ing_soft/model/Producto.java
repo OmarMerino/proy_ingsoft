@@ -20,7 +20,18 @@ public class Producto {
             inverseJoinColumns = @JoinColumn(name = "id_categoria"))
     private List<Categoria> categorias;
 
+    @ManyToMany
+    @JoinTable(name = "Existe", joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_bodega"))
+    private List<Bodega> bodegas; 
+   
     
+    public List<Bodega> getBodegas() {
+        return bodegas;
+    }
+    public void setBodegas(List<Bodega> bodegas) {
+        this.bodegas = bodegas;
+    }
     public int getId_producto() {
         return id_producto;
     }
