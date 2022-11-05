@@ -1,5 +1,7 @@
 package com.example.ing_soft.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +13,12 @@ public class Producto {
     private int stock;
     private String nombre_prod;
     private String descripcion;
+
+
+    @ManyToMany
+    @JoinTable(name = "Pertenece", joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_categoria"))
+    private List<Categoria> categorias;
 
     
     public int getId_producto() {
