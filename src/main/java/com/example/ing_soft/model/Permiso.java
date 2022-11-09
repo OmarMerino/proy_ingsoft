@@ -1,5 +1,7 @@
 package com.example.ing_soft.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,9 @@ public class Permiso {
     @GeneratedValue(strategy =GenerationType.IDENTITY )    
     private int id_permiso;
     private String nombre_permiso;
+
+    @ManyToMany(mappedBy = "permisos")
+    private List<Usuario> Usuarios; 
     
     public int getId_permiso() {
         return id_permiso;
