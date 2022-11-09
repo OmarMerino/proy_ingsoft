@@ -1,8 +1,12 @@
 package com.example.ing_soft.model;
 
 
+
+
 import javax.persistence.*;
 import javax.persistence.Id;
+
+
 
 @Entity
 public class Bodega {
@@ -11,6 +15,7 @@ public class Bodega {
     int id_bodega;
     String ubicacion;
     String nombre_bod;
+
     public int getId_bodega() {
         return id_bodega;
     }

@@ -10,14 +10,25 @@ public class Venta {
     String fecha;
     int descuento;
     int total;
+    
     @ManyToOne
     @JoinColumn(name = "rut")
     private Usuario usuario;
+
+    @ManyToOne                  
     @JoinColumn(name = "id_pago")
     private MetodoPago metodo_pago;
+
+
+
+    
     public int getId_venta() {
         return id_venta;
     }
+
+
+
+
     public void setId_venta(int id_venta) {
         this.id_venta = id_venta;
     }

@@ -1,6 +1,10 @@
 package com.example.ing_soft.model;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+
 
 @Entity
 public class Usuario {
@@ -11,6 +15,15 @@ public class Usuario {
     private String telefono;
     private String Correo;
     private String Contraseña;
+    @OneToMany
+    @JoinColumn(name="id_venta")
+    private List<Venta> ventas;
+
+    @ManyToMany
+    @JoinTable(name = "tiene_permiso", joinColumns = @JoinColumn(name = "id_permiso"),
+            inverseJoinColumns = @JoinColumn(name = "rut"))
+    private List<Permiso> permisos;
+    
     
     public int getRut() {
         return rut;

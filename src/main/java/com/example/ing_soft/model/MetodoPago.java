@@ -9,8 +9,7 @@ public class MetodoPago {
     int id_pago;
     String nombre;
     String tipo;
-
-    
+   
     public int getId_pago() {
         return id_pago;
     }
