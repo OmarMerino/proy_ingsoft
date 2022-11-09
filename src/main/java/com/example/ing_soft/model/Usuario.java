@@ -15,6 +15,8 @@ public class Usuario {
     private String telefono;
     private String Correo;
     private String Contraseña;
+
+    
     @OneToMany
     @JoinColumn(name="id_venta")
     private List<Venta> ventas;
