@@ -6,12 +6,16 @@ import javax.persistence.*;
 
 @Entity
 public class Vendido {
+    @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    private int id_vendido;
 
-    
-    @OneToMany
+    //muchos vendidos forman una venta
+    @ManyToOne
     @JoinColumn(name="id_venta")
-    private List<Venta> ventas;
+    private Venta venta;
     
+    //un vendido contiene muchos productos
     @OneToMany
     @JoinColumn(name="id_producto")
     private List<Producto> productos;
@@ -26,14 +30,7 @@ public class Vendido {
         this.cantidad = cantidad;
     }
 
-    public List<Venta> getVentas() {
-        return ventas;
-    }
-
-    public void setVentas(List<Venta> ventas) {
-        this.ventas = ventas;
-    }
-
+    
     public List<Producto> getProductos() {
         return productos;
     }
@@ -41,6 +38,7 @@ public class Vendido {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
+    
 
     
 }

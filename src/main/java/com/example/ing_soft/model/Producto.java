@@ -15,6 +15,12 @@ public class Producto {
     private String descripcion;
 
 
+    @ManyToOne
+    @JoinTable(name="id_vendido")
+    private Vendido vendido;
+
+
+    
     @ManyToMany
     @JoinTable(name = "Pertenece", joinColumns = @JoinColumn(name = "id_producto"),
             inverseJoinColumns = @JoinColumn(name = "id_categoria"))
@@ -50,6 +56,12 @@ public class Producto {
     }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    public Vendido getVendido() {
+        return vendido;
+    }
+    public void setVendido(Vendido vendido) {
+        this.vendido = vendido;
     }
 
     
