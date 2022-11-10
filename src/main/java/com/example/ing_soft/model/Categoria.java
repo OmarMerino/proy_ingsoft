@@ -2,15 +2,26 @@ package com.example.ing_soft.model;
 
 import javax.persistence.*;
 
+
+import java.util.List;
+
 @Entity
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     int id_cagegoria;
     String nombre_cat;
-
+    
+    @ManyToMany(mappedBy = "categorias")
+    private List<Producto> productos; 
 
     
+    public List<Producto> getProductos() {
+        return productos;
+    }
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
     public int getId_cagegoria() {
         return id_cagegoria;
     }
