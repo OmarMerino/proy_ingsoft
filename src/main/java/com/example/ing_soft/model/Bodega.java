@@ -16,24 +16,43 @@ public class Bodega {
     String ubicacion;
     String nombre_bod;
 
+    @ManyToOne
+    @JoinTable(name="id_existe")
+    private Existe existe;
+
     public int getId_bodega() {
         return id_bodega;
     }
+
     public void setId_bodega(int id_bodega) {
         this.id_bodega = id_bodega;
     }
+
     public String getUbicacion() {
         return ubicacion;
     }
+
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
     public String getNombre_bod() {
         return nombre_bod;
     }
+
     public void setNombre_bod(String nombre_bod) {
         this.nombre_bod = nombre_bod;
     }
+
+    public Existe getExiste() {
+        return existe;
+    }
+
+    public void setExiste(Existe existe) {
+        this.existe = existe;
+    }
+
+    
     
     
 }

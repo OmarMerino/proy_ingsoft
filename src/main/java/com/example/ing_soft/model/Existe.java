@@ -3,11 +3,17 @@ package com.example.ing_soft.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Existe {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_existe;
 
     @OneToMany
     @JoinColumn(name="id_bodega")
@@ -18,6 +24,14 @@ public class Existe {
     private List<Producto> productos;
 
     private int stock_bod;
+
+    public int getId_existe() {
+        return id_existe;
+    }
+
+    public void setId_existe(int id_existe) {
+        this.id_existe = id_existe;
+    }
 
     public List<Bodega> getBodegas() {
         return bodegas;
@@ -42,6 +56,8 @@ public class Existe {
     public void setStock_bod(int stock_bod) {
         this.stock_bod = stock_bod;
     }
+
+    
     
     
 }

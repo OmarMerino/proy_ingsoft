@@ -22,6 +22,30 @@ public class Vendido {
 
     private int cantidad;
 
+    public int getId_vendido() {
+        return id_vendido;
+    }
+
+    public void setId_vendido(int id_vendido) {
+        this.id_vendido = id_vendido;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
@@ -31,13 +55,6 @@ public class Vendido {
     }
 
     
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
     
 
     
