@@ -49,20 +49,3 @@ public class CategoriaService{
         }
     }
 }
-
-
-
-
-
-
-    public boolean deleteCategoriaById (int idCategoria ){
-        Optional <Categoria> categoriaOptional=categoriaRepository.findById(venta.getId_categoria());
-        if ( categoriaOptional.isPresent()){
-            categoriaRepository.deleteByid(idCategoria);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-}

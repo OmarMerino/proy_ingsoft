@@ -3,7 +3,6 @@ package com.example.ing_soft.model;
 import javax.persistence.*;
 
 import java.util.List;
-import java.util.List;
 
 @Entity
 public class Categoria {
