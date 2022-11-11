@@ -22,7 +22,7 @@ public class PermisoRestController {
 
     @GetMapping(value = "")
     public ResponseEntity<List<Permiso>> getAllPermisos() {
-        List<Permiso> permisoList = permisoService.findAllPermiso();
+        List<Permiso> permisoList = permisoService.findAllPermisos();
         if (!permisoList.isEmpty()) {
             return new ResponseEntity<>(permisoList, HttpStatus.OK);
         } else {

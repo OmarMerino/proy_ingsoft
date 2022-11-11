@@ -26,12 +26,12 @@ public class PermisoService {
 
     public boolean save(Permiso permiso) {
         permisoRepository.saveAndFlush(permiso);
-        Optional<Permiso> permisoOptional = permisoRepository.findPermisoByNombre(permiso.getNombre());
+        Optional<Permiso> permisoOptional = permisoRepository.findPermisoByNombre(permiso.getNombre_permiso());
         return permisoOptional.isPresent();
     }
 
     public boolean update(Permiso permiso) {
-        Optional<Permiso> permisoOptional = permisoRepository.findById(permiso.getId());
+        Optional<Permiso> permisoOptional = permisoRepository.findById(permiso.getId_permiso());
         if (permisoOptional.isPresent()) {
             permisoRepository.saveAndFlush(permiso);
             return true;
@@ -43,7 +43,7 @@ public class PermisoService {
     public boolean deletePermisoById(int id_permiso) {
         Optional<Permiso> permisoOptional = permisoRepository.findById(id_permiso);
         if (permisoOptional.isPresent()) {
-            permisoRepository.deleteById(idEmp);
+            permisoRepository.deleteById(id_permiso);
             return true;
         } else {
             return false;
