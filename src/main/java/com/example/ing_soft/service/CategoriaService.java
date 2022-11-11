@@ -1,4 +1,4 @@
-package com.example.ing_soft.rest;
+package com.example.ing_soft.service;
 
 import com.example.ing_soft.model.Categoria;
 import com.example.ing_soft.repository.CategoriaRepository;
@@ -20,13 +20,13 @@ public class CategoriaService{
     }
 
     public Optional <Categoria> findCategoriaById(int idCategoria){
-        return CategoriaRepository.findById(idCategoria);
+        return categoriaRepository.findById(idCategoria);
     }
 
     public boolean save (Categoria categoria){
         categoriaRepository.saveAndFlush(categoria);
         Optional <Categoria> categoriaOptional=categoriaRepository.findCategoriaById(categoria.getId_categoria());
-        return empleadoOptional.isPresent();
+        return categoriaOptional.isPresent();
     }
 
     public boolean update (Categoria categoria){
@@ -39,9 +39,16 @@ public class CategoriaService{
         }
     }
 
-
-
-
+    public boolean deleteCategoriaById (int idCategoria ){
+        Optional <Categoria> categoriaOptional= categoriaRepository.findById(idCategoria);
+        if ( categoriaOptional.isPresent()){
+            categoriaRepository.deleteById(idCategoria);
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
 
 
 

@@ -13,10 +13,10 @@ import java.util.Optional;
 @RequestMapping (value ="venta",produces ="application/json")
 public class VentaRestController {
 
-    private class VentaService ventaService;
+    private VentaService ventaService;
 
     public VentaRestController (VentaService ventaService){
-        this.ventaService=ventaService;
+        this.ventaService = ventaService;
     }
 
     @GetMapping (value="")
@@ -32,7 +32,7 @@ public class VentaRestController {
     @GetMapping (value="/{idVenta}")
     public ResponseEntity<Venta> getVentabyId(@PathVariable int idVenta){
         Optional<Venta> ventaOptional = ventaService.findVentaById(idVenta);
-        if(ventaList.isPresent()){
+        if(ventaOptional.isPresent()){
             return new ResponseEntity<>(ventaOptional.get(),HttpStatus.OK);
         } else {
             return new  ResponseEntity <>(HttpStatus.NOT_FOUND);
@@ -50,7 +50,7 @@ public class VentaRestController {
     }
 
     @PutMapping (value ="")
-    public ResponseEntity<void> updateVenta (@RequestBody Venta venta ){
+    public ResponseEntity<Void> updateVenta (@RequestBody Venta venta ){
         boolean update = ventaService.update(venta);
         if(update){
             return new ResponseEntity<> (HttpStatus.OK);
@@ -60,7 +60,7 @@ public class VentaRestController {
     }
 
     @DeleteMapping (value ="/{idVenta}")
-    public ResponseEntity<void> deleteVentaById(@PathVariable int idVenta){
+    public ResponseEntity<Void> deleteVentaById(@PathVariable int idVenta){
         boolean delete = ventaService.deleteVentaById(idVenta);
         if(delete){
             return new ResponseEntity<> (HttpStatus.OK);

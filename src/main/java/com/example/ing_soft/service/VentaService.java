@@ -43,7 +43,7 @@ public class VentaService {
     public boolean deleteVentaById(int idVenta){
         Optional<Venta> ventaOptional = ventaRepository.findById(idVenta);
         if(ventaOptional.isPresent()){
-            ventaRepository.deleteByid(idVenta);
+            ventaRepository.deleteById(idVenta);
             return true;
         }else{
             return false;

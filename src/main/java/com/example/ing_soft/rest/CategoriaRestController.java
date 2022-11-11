@@ -10,31 +10,32 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping (value ="categoria",produce ="application/json")
+@RequestMapping (value ="categoria",produces ="application/json")
 public class CategoriaRestController { 
-
-    private class CategoriaService categoriaService;
+    private CategoriaService categoriaService;
 
     public CategoriaRestController( CategoriaService categoriaService){
         this.categoriaService=categoriaService;
     }
 
     @GetMapping(value="")
-    public ResponseEntity<List<Categoria>> getAllCategoria (){
+    public ResponseEntity<List<Categoria>> getAllCategorias(){
         List<Categoria> categoriaList= categoriaService.findAllCategoria();
-        if(categoriaList.isEmpty()){
-            return new ResponseEntity<>(categoriaList,HttpStatus.OK);        }
-    }else { 
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(!categoriaList.isEmpty()) {
+            return new ResponseEntity<>(categoriaList,HttpStatus.OK);        
+        } else { 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(value="/{idCategoria}")
     public ResponseEntity<Categoria> getCategoriaById (@PathVariable int idCategoria){
         Optional<Categoria> categoriaOptional= categoriaService.findCategoriaById(idCategoria);
-        if(categoriaList.isPresent()){
+        if(categoriaOptional.isPresent()){
             return new ResponseEntity<>(categoriaOptional.get(),HttpStatus.OK);
-    }else { 
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else { 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping(value = "")
@@ -48,7 +49,7 @@ public class CategoriaRestController {
     }
     
     @PutMapping (value="")
-    public ResponseEntity<void> updateCategoria(@RequestBody Categoria categoria){
+    public ResponseEntity<Void> updateCategoria(@RequestBody Categoria categoria){
         boolean update = categoriaService.update(categoria);
         if(update){
             return new ResponseEntity<> (HttpStatus.OK);
@@ -58,13 +59,12 @@ public class CategoriaRestController {
     }
 
     @DeleteMapping(value = "/{idCategoria}")
-    public ResponseEntity<void> deletCategoriaById (@PathVariable int idCategoria){
-        boolean delete = categoriaService.deletCategoriaById(idCategoria);
+    public ResponseEntity<Void> deletCategoriaById (@PathVariable int idCategoria){
+        boolean delete = categoriaService.deleteCategoriaById(idCategoria);
         if(delete){
             return new ResponseEntity<> (HttpStatus.OK);
         }else{
             return new ResponseEntity<> (HttpStatus.NOT_FOUND);
         }
     }
-
 }
