@@ -9,7 +9,7 @@ import java.util.List;
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
-    int id_cagegoria;
+    int id_categoria;
     String nombre_cat;
     
     @ManyToMany(mappedBy = "categorias")
@@ -22,11 +22,11 @@ public class Categoria {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
-    public int getId_cagegoria() {
-        return id_cagegoria;
+    public int getId_categoria() {
+        return id_categoria;
     }
-    public void setId_cagegoria(int id_cagegoria) {
-        this.id_cagegoria = id_cagegoria;
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
     public String getNombre_cat() {
         return nombre_cat;
