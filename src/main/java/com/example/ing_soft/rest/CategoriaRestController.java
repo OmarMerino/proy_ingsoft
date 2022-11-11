@@ -28,9 +28,9 @@ public class CategoriaRestController {
         }
     }
 
-    @GetMapping(value="/{idCategoria}")
-    public ResponseEntity<Categoria> getCategoriaById (@PathVariable int idCategoria){
-        Optional<Categoria> categoriaOptional= categoriaService.findCategoriaById(idCategoria);
+    @GetMapping(value="/{id_categoria}")
+    public ResponseEntity<Categoria> getCategoriaById (@PathVariable int id_categoria){
+        Optional<Categoria> categoriaOptional= categoriaService.findCategoriaById(id_categoria);
         if(categoriaOptional.isPresent()){
             return new ResponseEntity<>(categoriaOptional.get(),HttpStatus.OK);
         }else { 
@@ -58,9 +58,9 @@ public class CategoriaRestController {
         }
     }
 
-    @DeleteMapping(value = "/{idCategoria}")
-    public ResponseEntity<Void> deletCategoriaById (@PathVariable int idCategoria){
-        boolean delete = categoriaService.deleteCategoriaById(idCategoria);
+    @DeleteMapping(value = "/{id_categoria}")
+    public ResponseEntity<Void> deletCategoriaById (@PathVariable int id_categoria){
+        boolean delete = categoriaService.deleteCategoriaById(id_categoria);
         if(delete){
             return new ResponseEntity<> (HttpStatus.OK);
         }else{

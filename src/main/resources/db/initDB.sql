@@ -52,12 +52,13 @@ CREATE TABLE Pertenece
 
 CREATE TABLE Existe
 (
+  id_existe INT NOT NULL,
   stock_bod INT NOT NULL,
   id_producto INT NOT NULL,
   id_bodega INT NOT NULL,
-  PRIMARY KEY (id_producto, id_bodega),
   FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
-  FOREIGN KEY (id_bodega) REFERENCES bodega(id_bodega)
+  FOREIGN KEY (id_bodega) REFERENCES bodega(id_bodega),
+  PRIMARY KEY(id_existe)
 );
 
 CREATE TABLE TienePermiso
@@ -87,16 +88,17 @@ CREATE TABLE Venta
   id_pago INT NOT NULL,
   PRIMARY KEY (id_venta),
   FOREIGN KEY (rut) REFERENCES Usuario(rut),
-  FOREIGN KEY (id_pago) REFERENCES Metodo_pago(id_pago)
+  FOREIGN KEY (id_pago) REFERENCES MetodoPago(id_pago)
 );
 
 CREATE TABLE Vendido
 (
+  id_vendido INT NOT NULL,
   precio INT NOT NULL,
   cantidad INT NOT NULL,
   id_producto INT NOT NULL,
   id_venta INT NOT NULL,
-  PRIMARY KEY (id_producto, id_venta),
+  PRIMARY KEY (id_vendido),
   FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
   FOREIGN KEY (id_venta) REFERENCES Venta(id_venta)
 );
