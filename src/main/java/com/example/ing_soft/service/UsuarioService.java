@@ -20,17 +20,17 @@ public class UsuarioService{
     }
 
     public Optional<Usuario> findUsuarioByRut(int rut){
-        return usuarioRepository.findByRut(rut);
+        return usuarioRepository.findById(rut);
     }
 
     public boolean save (Usuario usuario){
         usuarioRepository.saveAndFlush(usuario);
-        Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByNombre(empleado.getNombre());
+        Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByNombre(usuario.getNombre());
         return usuarioOptional.isPresent();
     }
 
     public boolean update(Usuario usuario){
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByRut(usuario.getRut());
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(usuario.getRut());
         
         if(usuarioOptional.isPresent()){
             usuarioRepository.saveAndFlush(usuario);
@@ -41,9 +41,9 @@ public class UsuarioService{
     }
 
     public boolean deleteUsuarioByRut(int rut){
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByRut(rut);
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(rut);
         if(usuarioOptional.isPresent()){
-            usuarioRepository.deleteByRut(rut);
+            usuarioRepository.deleteById(rut);
             return true;
         }else{
             return false;
