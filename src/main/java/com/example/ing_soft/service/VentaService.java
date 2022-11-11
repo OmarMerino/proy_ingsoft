@@ -19,8 +19,8 @@ public class VentaService {
         return ventaRepository.findAll();
     }
 
-    public Optional<Venta> findVentaById (int idVenta){
-        return ventaRepository.findById(idVenta);
+    public Optional<Venta> findVentaById (int id_venta){
+        return ventaRepository.findById(id_venta);
     }
 
     public boolean save (Venta venta){
@@ -40,10 +40,10 @@ public class VentaService {
         }
     }
 
-    public boolean deleteVentaById(int idVenta){
-        Optional<Venta> ventaOptional = ventaRepository.findById(idVenta);
+    public boolean deleteVentaById(int id_venta){
+        Optional<Venta> ventaOptional = ventaRepository.findById(id_venta);
         if(ventaOptional.isPresent()){
-            ventaRepository.deleteById(idVenta);
+            ventaRepository.deleteById(id_venta);
             return true;
         }else{
             return false;

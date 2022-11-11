@@ -29,9 +29,9 @@ public class VentaRestController {
         }
     }
 
-    @GetMapping (value="/{idVenta}")
-    public ResponseEntity<Venta> getVentabyId(@PathVariable int idVenta){
-        Optional<Venta> ventaOptional = ventaService.findVentaById(idVenta);
+    @GetMapping (value="/{id_venta}")
+    public ResponseEntity<Venta> getVentabyId(@PathVariable int id_venta){
+        Optional<Venta> ventaOptional = ventaService.findVentaById(id_venta);
         if(ventaOptional.isPresent()){
             return new ResponseEntity<>(ventaOptional.get(),HttpStatus.OK);
         } else {
@@ -59,9 +59,9 @@ public class VentaRestController {
         }
     }
 
-    @DeleteMapping (value ="/{idVenta}")
-    public ResponseEntity<Void> deleteVentaById(@PathVariable int idVenta){
-        boolean delete = ventaService.deleteVentaById(idVenta);
+    @DeleteMapping (value ="/{id_venta}")
+    public ResponseEntity<Void> deleteVentaById(@PathVariable int id_venta){
+        boolean delete = ventaService.deleteVentaById(id_venta);
         if(delete){
             return new ResponseEntity<> (HttpStatus.OK);
         }else{

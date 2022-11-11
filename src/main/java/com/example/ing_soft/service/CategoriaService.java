@@ -19,8 +19,8 @@ public class CategoriaService{
         return categoriaRepository.findAll();
     }
 
-    public Optional <Categoria> findCategoriaById(int idCategoria){
-        return categoriaRepository.findById(idCategoria);
+    public Optional <Categoria> findCategoriaById(int id_categoria){
+        return categoriaRepository.findById(id_categoria);
     }
 
     public boolean save (Categoria categoria){
@@ -39,10 +39,10 @@ public class CategoriaService{
         }
     }
 
-    public boolean deleteCategoriaById (int idCategoria ){
-        Optional <Categoria> categoriaOptional= categoriaRepository.findById(idCategoria);
+    public boolean deleteCategoriaById (int id_categoria ){
+        Optional <Categoria> categoriaOptional= categoriaRepository.findById(id_categoria);
         if ( categoriaOptional.isPresent()){
-            categoriaRepository.deleteById(idCategoria);
+            categoriaRepository.deleteById(id_categoria);
             return true;
         }else{
             return false;
