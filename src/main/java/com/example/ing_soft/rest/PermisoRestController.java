@@ -60,7 +60,7 @@ public class PermisoRestController {
         }
     }
 
-    @DeleteMapping(value = "/{idEmp}")
+    @DeleteMapping(value = "/{id_permiso}")
     public ResponseEntity<Void> deletePermisoById(@PathVariable int id_permiso) {
         boolean eliminado = permisoService.deletePermisoById(id_permiso);
         if (eliminado) {
