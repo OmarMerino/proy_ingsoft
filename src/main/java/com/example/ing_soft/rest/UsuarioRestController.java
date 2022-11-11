@@ -53,6 +53,7 @@ public class UsuarioRestController {
     @DeleteMapping(value = "/{rut}")
     public ResponseEntity<Void> deleteUsuarioById(@PathVariable int rut){
         boolean eliminado = usuarioService.deleteUsuarioByRut(rut);
+
         if(eliminado){
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
@@ -61,7 +62,7 @@ public class UsuarioRestController {
     }
 
     // Listar usuarios 
-    @GetMapping(value = )
+    @GetMapping(value = "" )
     public ResponseEntity<List<Usuario>> getAllUsuarios(){
         List<Usuario> usuarioList = usuarioService.findAllUsuarios();
         if(!usuarioList.isEmpty()) {
@@ -71,17 +72,14 @@ public class UsuarioRestController {
         }
     }
 
-    // Listar usuarios por ID
-    @GetMapping(value = "/{rut}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable int rut) {
-        Optional<Usuario> usuarioOptional = usuarioService.findUsuarioByRut(rut);
-        if(usuarioOptional.isPresent()){
-            return new ResponseEntity<>(usuarioOptional.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-
-    
+     // Listar usuarios por ID
+     @GetMapping(value = "/{rut}")
+     public ResponseEntity<Usuario> getUsuarioById(@PathVariable int rut) {
+         Optional<Usuario> usuarioOptional = usuarioService.findUsuarioByRut(rut);
+         if(usuarioOptional.isPresent()){
+             return new ResponseEntity<>(usuarioOptional.get(), HttpStatus.OK);
+         }else{
+             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+         }
+     }   
 }
