@@ -1,40 +1,51 @@
 package com.example.ing_soft.service;
 
-import org.hibernate.mapping.List;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.ing_soft.model.MetodoPago;
+import com.example.ing_soft.repository.MetodoPagoRepository;
+import org.springframework.stereotype.Service;
 
-@RestController
-@RequestMapping("/MetodoPago")
+import java.util.Optional;
+import java.util.List;
+
+@Service
 public class MetodoPagoService {
-    //Autowired?
-    private final MetodoPagoRepository;
-    //constructor??
-    @PostMapping
-    public void crear(@RequestBody MetodoPago metodopago){
-        MetodoPagoRepository.save(metodopago);
-    }
+  private final MetodoPagoRepository metodopagoRepository;
+  
+  public MetodoPagoService(MetodoPagoRepository metodopagoRepository){
+    this.metodopagoRepository = metodopagoRepository;
+  }
 
-    @PutMapping
-    public void editar(@RequestBody MetodoPago metodopago){
-        MetodoPagoRepository.save(metodopago);
-    }
-    
-    @GetMapping
-    public List<MetodoPago> listar(){
-        return MetodoPagoRepository.findAll();
-    }
+  public List<MetodoPago> findAllMetodoPago(){
+    return metodopagoRepository.findAll();
+  }
 
-    @DeleteMapping(value="/(id)")  //pasa por id el metodo de pago que sera eliminado
-    public void eliminar(@PathVariable("id") int id){
-        MetodoPagoRepository.deleteById(id);
+  public Optional<MetodoPago> findMetodoPagoById(int id) {
+    return metodopagoRepository.findById(id);
+  }
+
+  public boolean save(MetodoPago metodopago) {
+    metodopagoRepository.saveAndFlush(metodopago);
+    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findMetodoPagoByNombre(metodopago.getNombre());
+    return metodopagoOptional.isPresent();
+}
+
+  public boolean update(MetodoPago metodopago){
+    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findById(metodopago.getId_pago());
+    if(metodopagoOptional.isPresent()){
+        metodopagoRepository.saveAndFlush(metodopago);
+        return true;
+    }else{
+        return false;
+    } 
+  }
+
+  public boolean deleteMetodoPagoById(int id_pago) {
+    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findById(id_pago);
+    if (metodopagoOptional.isPresent()) {
+        metodopagoRepository.deleteById(id_pago);
+        return true;
+    } else {
+        return false;
     }
+  }
 }
