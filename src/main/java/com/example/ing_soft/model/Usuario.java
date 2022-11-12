@@ -24,6 +24,13 @@ public class Usuario {
     @JoinTable(name = "tiene_permiso", joinColumns = @JoinColumn(name = "id_permiso"),
             inverseJoinColumns = @JoinColumn(name = "rut"))
     private List<Permiso> permisos;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public int getRut() {
         return rut;
