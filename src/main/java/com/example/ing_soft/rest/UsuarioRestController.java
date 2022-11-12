@@ -27,7 +27,7 @@ public class UsuarioRestController {
     }
 
     // Crear Usuarios
-    @PostMapping(value = " ")
+    @PostMapping(value = "")
     public ResponseEntity<Void> addUsuario(@RequestBody Usuario usuario){
         boolean creado = usuarioService.save(usuario);
 
