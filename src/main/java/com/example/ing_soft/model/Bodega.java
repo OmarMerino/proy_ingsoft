@@ -8,11 +8,11 @@ import javax.persistence.Id;
 public class Bodega {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
     @Column(name = "ubicacion")
-    String ubicacion;
+    private String ubicacion;
     @Column(name = "nombre")
-    String nombre;
+    private String nombre;
 
    /*  @ManyToOne
     @JoinTable(name = "id")

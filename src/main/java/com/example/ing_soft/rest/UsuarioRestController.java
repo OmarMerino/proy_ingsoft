@@ -19,7 +19,7 @@ import com.example.ing_soft.model.Usuario;
 import com.example.ing_soft.service.UsuarioService;
 
 @RestController 
-@RequestMapping (value = "usuarios", produces = "application/json")
+@RequestMapping (value = "usuario", produces = "application/json")
 public class UsuarioRestController {
     @Autowired
     private UsuarioService usuarioService;
