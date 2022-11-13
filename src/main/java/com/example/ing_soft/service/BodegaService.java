@@ -3,6 +3,7 @@ package com.example.ing_soft.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.ing_soft.model.Bodega;
@@ -10,11 +11,8 @@ import com.example.ing_soft.repository.BodegaRepository;
 
 @Service
 public class BodegaService {
-    private final BodegaRepository bodegaRepository;
-
-    public BodegaService(BodegaRepository bodegaRepository){
-        this.bodegaRepository = bodegaRepository;
-    }
+    @Autowired
+    private BodegaRepository bodegaRepository;
 
     public List<Bodega> findAllBodegas(){
         return bodegaRepository.findAll();
@@ -26,12 +24,12 @@ public class BodegaService {
 
     public boolean save(Bodega bodega){
         bodegaRepository.saveAndFlush(bodega);
-        Optional<Bodega> bodegaOptional = bodegaRepository.findBodegaByNombre(bodega.getNombre_bod());
+        Optional<Bodega> bodegaOptional = bodegaRepository.findBodegaByNombre(bodega.getNombre());
         return bodegaOptional.isPresent();
     }
 
     public boolean update (Bodega bodega){
-        Optional<Bodega> bodegaOptional = bodegaRepository.findById(bodega.getId_bodega());
+        Optional<Bodega> bodegaOptional = bodegaRepository.findById(bodega.getId());
         if(bodegaOptional.isPresent()){
             bodegaRepository.saveAndFlush(bodega);
             return true;
@@ -40,10 +38,10 @@ public class BodegaService {
         }
     }
 
-    public boolean deleteBodegaById(int id_bodega){
-        Optional<Bodega> bodegaOptional = bodegaRepository.findById(id_bodega);
+    public boolean deleteBodegaById(int id){
+        Optional<Bodega> bodegaOptional = bodegaRepository.findById(id);
         if(bodegaOptional.isPresent()){
-            bodegaRepository.deleteById(id_bodega);
+            bodegaRepository.deleteById(id);
             return true;
         }else{
             return false;

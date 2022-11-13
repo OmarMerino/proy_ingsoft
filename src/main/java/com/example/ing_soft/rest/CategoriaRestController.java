@@ -1,6 +1,8 @@
 package com.example.ing_soft.rest;
 
 import com.example.ing_soft.service.CategoriaService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +14,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping (value ="categoria",produces ="application/json")
 public class CategoriaRestController { 
+    @Autowired
     private CategoriaService categoriaService;
-
-    public CategoriaRestController( CategoriaService categoriaService){
-        this.categoriaService=categoriaService;
-    }
 
     @GetMapping(value="")
     public ResponseEntity<List<Categoria>> getAllCategorias(){

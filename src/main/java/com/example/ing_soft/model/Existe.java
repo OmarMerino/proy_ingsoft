@@ -2,38 +2,55 @@ package com.example.ing_soft.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "existe")
 public class Existe {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_existe;
+    private int id;
 
-    @OneToMany
-    @JoinColumn(name="id_bodega")
+    @Column(name = "stock")
+    private int stock;
+
+    /* @OneToMany
+    @JoinColumn(name = "id_bodega")
     private List<Bodega> bodegas;
-    
+
     @OneToMany
-    @JoinColumn(name="id_producto")
-    private List<Producto> productos;
+    @JoinColumn(name = "id_producto")
+    private List<Producto> productos; */
 
-    private int stock_bod;
+    public Existe() {
 
-    public int getId_existe() {
-        return id_existe;
     }
 
-    public void setId_existe(int id_existe) {
-        this.id_existe = id_existe;
+    public int getId() {
+        return id;
     }
 
-    public List<Bodega> getBodegas() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+   /*  public List<Bodega> getBodegas() {
         return bodegas;
     }
 
@@ -47,17 +64,6 @@ public class Existe {
 
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
-    }
+    } */
 
-    public int getStock_bod() {
-        return stock_bod;
-    }
-
-    public void setStock_bod(int stock_bod) {
-        this.stock_bod = stock_bod;
-    }
-
-    
-    
-    
 }

@@ -5,35 +5,37 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "venta")
 public class Venta {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY )
-    int id_venta;
-    String fecha;
-    int descuento;
-    int total;
-    //usuario-venta
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "fecha")
+    private String fecha;
+    @Column(name = "descuento")
+    private int descuento;
+    @Column(name = "total")
+    private int total;
+   /*  // usuario-venta
     @ManyToOne
     @JoinColumn(name = "rut")
     private Usuario usuario;
-    //metodo pago-venta
-    @ManyToOne                  
+    // metodo pago-venta
+    @ManyToOne
     @JoinColumn(name = "id_pago")
     private MetodoPago metodo_pago;
-    //una venta esta en muchos vendido
+    // una venta esta en muchos vendido
     @OneToMany
-    @JoinColumn(name="id_vendido")
-    List<Vendido> vendidos;
+    @JoinColumn(name = "id_vendido")
+    private List<Vendido> vendidos; */
 
-
-
-    
-    public int getId_venta() {
-        return id_venta;
+    public int getId() {
+        return id;
     }
 
-    public void setId_venta(int id_venta) {
-        this.id_venta = id_venta;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFecha() {
@@ -60,7 +62,7 @@ public class Venta {
         this.total = total;
     }
 
-    public Usuario getUsuario() {
+    /* public Usuario getUsuario() {
         return usuario;
     }
 
@@ -74,5 +76,16 @@ public class Venta {
 
     public void setMetodo_pago(MetodoPago metodo_pago) {
         this.metodo_pago = metodo_pago;
+    }
+
+    public List<Vendido> getVendidos() {
+        return vendidos;
+    }
+
+    public void setVendidos(List<Vendido> vendidos) {
+        this.vendidos = vendidos;
+    } */
+
+    public Venta() {
     }
 }

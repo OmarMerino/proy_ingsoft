@@ -3,6 +3,8 @@ package com.example.ing_soft.service;
 
 import com.example.ing_soft.model.Permiso;
 import com.example.ing_soft.repository.PermisoRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,11 +12,9 @@ import java.util.Optional;
 
 @Service
 public class PermisoService {
-    private final PermisoRepository permisoRepository;
 
-    public PermisoService(PermisoRepository permisoRepository) {
-        this.permisoRepository = permisoRepository;
-    }
+    @Autowired
+    private  PermisoRepository permisoRepository;
 
     public List<Permiso> findAllPermisos() {
         return permisoRepository.findAll();
@@ -26,24 +26,24 @@ public class PermisoService {
 
     public boolean save(Permiso permiso) {
         permisoRepository.saveAndFlush(permiso);
-        Optional<Permiso> permisoOptional = permisoRepository.findPermisoByNombre(permiso.getNombre_permiso());
+        Optional<Permiso> permisoOptional = permisoRepository.findPermisoByNombre(permiso.getNombre());
         return permisoOptional.isPresent();
     }
 
     public boolean update(Permiso permiso) {
-        Optional<Permiso> permisoOptional = permisoRepository.findById(permiso.getId_permiso());
+        Optional<Permiso> permisoOptional = permisoRepository.findById(permiso.getId());
         if (permisoOptional.isPresent()) {
             permisoRepository.saveAndFlush(permiso);
             return true;
         } else {
             return false;
-        }
+        }   
     }
 
-    public boolean deletePermisoById(int id_permiso) {
-        Optional<Permiso> permisoOptional = permisoRepository.findById(id_permiso);
+    public boolean deletePermisoById(int id) {
+        Optional<Permiso> permisoOptional = permisoRepository.findById(id);
         if (permisoOptional.isPresent()) {
-            permisoRepository.deleteById(id_permiso);
+            permisoRepository.deleteById(id);
             return true;
         } else {
             return false;

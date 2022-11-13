@@ -2,6 +2,8 @@ package com.example.ing_soft.service;
 
 import com.example.ing_soft.model.MetodoPago;
 import com.example.ing_soft.repository.MetodoPagoRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -9,11 +11,10 @@ import java.util.List;
 
 @Service
 public class MetodoPagoService {
-  private final MetodoPagoRepository metodopagoRepository;
+  @Autowired
+  private  MetodoPagoRepository metodopagoRepository;
   
-  public MetodoPagoService(MetodoPagoRepository metodopagoRepository){
-    this.metodopagoRepository = metodopagoRepository;
-  }
+  
 
   public List<MetodoPago> findAllMetodoPago(){
     return metodopagoRepository.findAll();
@@ -30,7 +31,7 @@ public class MetodoPagoService {
 }
 
   public boolean update(MetodoPago metodopago){
-    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findById(metodopago.getId_pago());
+    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findById(metodopago.getId());
     if(metodopagoOptional.isPresent()){
         metodopagoRepository.saveAndFlush(metodopago);
         return true;
@@ -39,10 +40,10 @@ public class MetodoPagoService {
     } 
   }
 
-  public boolean deleteMetodoPagoById(int id_pago) {
-    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findById(id_pago);
+  public boolean deleteMetodoPagoById(int id) {
+    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findById(id);
     if (metodopagoOptional.isPresent()) {
-        metodopagoRepository.deleteById(id_pago);
+        metodopagoRepository.deleteById(id);
         return true;
     } else {
         return false;

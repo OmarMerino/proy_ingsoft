@@ -2,6 +2,8 @@ package com.example.ing_soft.rest;
 
 import com.example.ing_soft.model.Permiso;
 import com.example.ing_soft.service.PermisoService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +16,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "permiso",produces = "application/json")
 public class PermisoRestController {
+    @Autowired
     private PermisoService permisoService;
-
-    public PermisoRestController(PermisoService permisoService) {
-        this.permisoService = permisoService;
-    }
 
     @GetMapping(value = "")
     public ResponseEntity<List<Permiso>> getAllPermisos() {

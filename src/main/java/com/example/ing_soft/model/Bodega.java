@@ -1,31 +1,34 @@
 package com.example.ing_soft.model;
 
-
-
-
 import javax.persistence.*;
 import javax.persistence.Id;
 
-
-
 @Entity
+@Table(name = "bodega")
 public class Bodega {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    int id_bodega;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+    @Column(name = "ubicacion")
     String ubicacion;
-    String nombre_bod;
+    @Column(name = "nombre")
+    String nombre;
 
-    @ManyToOne
-    @JoinTable(name="id_existe")
-    private Existe existe;
+   /*  @ManyToOne
+    @JoinTable(name = "id")
+    
+    private Existe existe; */
 
-    public int getId_bodega() {
-        return id_bodega;
+    public Bodega() {
+
     }
 
-    public void setId_bodega(int id_bodega) {
-        this.id_bodega = id_bodega;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUbicacion() {
@@ -36,23 +39,20 @@ public class Bodega {
         this.ubicacion = ubicacion;
     }
 
-    public String getNombre_bod() {
-        return nombre_bod;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_bod(String nombre_bod) {
-        this.nombre_bod = nombre_bod;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Existe getExiste() {
+    /* public Existe getExiste() {
         return existe;
     }
 
     public void setExiste(Existe existe) {
         this.existe = existe;
-    }
+    } */
 
-    
-    
-    
 }

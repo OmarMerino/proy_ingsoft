@@ -1,5 +1,6 @@
 package com.example.ing_soft.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,11 +20,9 @@ import java.util.List;
 @RestController
 @RequestMapping (value = "bodegas", produces ="application/json")
 public class BodegaRestController {
+    @Autowired
     private BodegaService bodegaService;
 
-    public BodegaRestController(BodegaService bodegaService){
-        this.bodegaService = bodegaService;
-    }
 
     @GetMapping(value = "")
     public ResponseEntity<List<Bodega>> getAllBodegas(){

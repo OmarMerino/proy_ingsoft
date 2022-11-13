@@ -3,6 +3,7 @@ package com.example.ing_soft.rest;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,11 +21,8 @@ import com.example.ing_soft.service.UsuarioService;
 @RestController 
 @RequestMapping (value = "usuarios", produces = "application/json")
 public class UsuarioRestController {
+    @Autowired
     private UsuarioService usuarioService;
-
-    public UsuarioRestController(UsuarioService usuarioService){
-        this.usuarioService = usuarioService;
-    }
 
     // Crear Usuarios
     @PostMapping(value = "")

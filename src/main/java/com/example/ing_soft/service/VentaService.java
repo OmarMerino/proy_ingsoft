@@ -2,6 +2,8 @@ package com.example.ing_soft.service;
 
 import com.example.ing_soft.model.Venta;
 import com.example.ing_soft.repository.VentaRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +11,9 @@ import java.util.Optional;
 
 @Service
 public class VentaService {
-    private final VentaRepository ventaRepository;
+    @Autowired
+    private VentaRepository ventaRepository;
 
-    public VentaService (VentaRepository ventaRepository){
-        this.ventaRepository = ventaRepository;
-    }
 
     public List<Venta> findAllVentas(){
         return ventaRepository.findAll();
@@ -25,13 +25,13 @@ public class VentaService {
 
     public boolean save (Venta venta){
         ventaRepository.saveAndFlush(venta);
-        Optional <Venta> ventaOptional=ventaRepository.findVentaById(venta.getId_venta());
+        Optional <Venta> ventaOptional=ventaRepository.findVentaById(venta.getId());
         return ventaOptional.isPresent();
     }
     
 
     public boolean update (Venta venta){
-        Optional <Venta> ventaOptional =ventaRepository.findById(venta.getId_venta());
+        Optional <Venta> ventaOptional =ventaRepository.findById(venta.getId());
         if (ventaOptional.isPresent()){
             ventaRepository.saveAndFlush(venta);
             return true;

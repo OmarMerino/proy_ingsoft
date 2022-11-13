@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface BodegaRepository extends JpaRepository<Bodega, Integer>{
-    Optional <Bodega> findBodegaByNombre(String nombre_bod);    
+    Optional <Bodega> findBodegaByNombre(String nombre);    
 }

@@ -5,28 +5,48 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "usuario")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY )
-    private int rut;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "rut")
+    private String rut;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "direccion")
     private String direccion;
+    @Column(name = "telefono")
     private String telefono;
+    @Column(name = "correo")
     private String Correo;
+    @Column(name = "contraseña")
     private String Contraseña;
 
-    
-    @OneToMany
-    @JoinColumn(name="id_venta")
+    /* @OneToMany
+    @JoinColumn(name = "id_venta")
     private List<Venta> ventas;
 
     @ManyToMany
-    @JoinTable(name = "tiene_permiso", joinColumns = @JoinColumn(name = "id_permiso"),
-            inverseJoinColumns = @JoinColumn(name = "rut"))
+    @JoinTable(name = "tiene_permiso", joinColumns = @JoinColumn(name = "id_permiso"), inverseJoinColumns = @JoinColumn(name = "rut"))
     private List<Permiso> permisos;
+ */
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -34,15 +54,6 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public int getRut() {
-        return rut;
-    }
-
-    public void setRut(int rut) {
-        this.rut = rut;
-    }
-
 
     public String getDireccion() {
         return direccion;
@@ -76,7 +87,7 @@ public class Usuario {
         Contraseña = contraseña;
     }
 
-    public List<Venta> getVentas() {
+    /* public List<Venta> getVentas() {
         return ventas;
     }
 
@@ -90,9 +101,9 @@ public class Usuario {
 
     public void setPermisos(List<Permiso> permisos) {
         this.permisos = permisos;
+    } */
+
+    public Usuario() {
     }
-    
-    
-  
 
 }

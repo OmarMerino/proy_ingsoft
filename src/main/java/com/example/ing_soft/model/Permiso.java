@@ -5,38 +5,43 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "permiso")
 public class Permiso {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY )    
-    private int id_permiso;
-    private String nombre_permiso;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @ManyToMany(mappedBy = "permisos")
+    @Column(name = "nombre")
+    private String nombre;
+
+ /*    @ManyToMany(mappedBy = "permisos")
     private List<Usuario> Usuarios;
-
-    public int getId_permiso() {
-        return id_permiso;
+ */
+    public Permiso() {
     }
 
-    public void setId_permiso(int id_permiso) {
-        this.id_permiso = id_permiso;
+    public int getId() {
+        return id;
     }
 
-    public String getNombre_permiso() {
-        return nombre_permiso;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setNombre_permiso(String nombre_permiso) {
-        this.nombre_permiso = nombre_permiso;
+    public String getNombre() {
+        return nombre;
     }
 
-    public List<Usuario> getUsuarios() {
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /* public List<Usuario> getUsuarios() {
         return Usuarios;
     }
 
     public void setUsuarios(List<Usuario> usuarios) {
         Usuarios = usuarios;
-    } 
-    
-    
+    } */
+
 }

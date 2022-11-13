@@ -3,6 +3,7 @@ package com.example.ing_soft.rest;
 import com.example.ing_soft.model.MetodoPago;
 import com.example.ing_soft.service.MetodoPagoService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "metodopago",produces = "application/json")
 public class MetodoPagoRestController {
+    @Autowired
     private MetodoPagoService metodopagoService;
-
-    public MetodoPagoRestController(MetodoPagoService metodopagoService){
-        this.metodopagoService = metodopagoService;
-    }
 
     @GetMapping(value ="")
     public ResponseEntity<List<MetodoPago>> getAllMetodoPago(){

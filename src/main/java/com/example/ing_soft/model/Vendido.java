@@ -5,21 +5,23 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "vendido")
 public class Vendido {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_vendido;
 
-    //muchos vendidos forman una venta
+ /*    // muchos vendidos forman una venta
     @ManyToOne
-    @JoinColumn(name="id_venta")
+    @JoinColumn(name = "id_venta")
     private Venta venta;
-    
-    //un vendido contiene muchos productos
-    @OneToMany
-    @JoinColumn(name="id_producto")
-    private List<Producto> productos;
 
+    // un vendido contiene muchos productos
+    @OneToMany
+    @JoinColumn(name = "id_producto")
+    private List<Producto> productos; */
+
+    @Column(name = "cantidad")
     private int cantidad;
 
     public int getId_vendido() {
@@ -30,7 +32,7 @@ public class Vendido {
         this.id_vendido = id_vendido;
     }
 
-    public Venta getVenta() {
+    /* public Venta getVenta() {
         return venta;
     }
 
@@ -44,7 +46,7 @@ public class Vendido {
 
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
-    }
+    } */
 
     public int getCantidad() {
         return cantidad;
@@ -54,8 +56,7 @@ public class Vendido {
         this.cantidad = cantidad;
     }
 
-    
-    
+    public Vendido() {
+    }
 
-    
 }
