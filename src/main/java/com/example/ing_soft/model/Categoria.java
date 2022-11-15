@@ -13,15 +13,10 @@ public class Categoria {
     @Column(name = "nombre")
     private String nombre;
 
-    /* @ManyToMany(mappedBy = "categorias")
+     /* @ManyToMany(mappedBy = "categorias")
     private List<Producto> productos; */
 
-    /* public List<Producto> getProductos() {
-        return productos;
-    } */
-
     public Categoria() {
-
     }
 
     public int getId() {
@@ -39,6 +34,16 @@ public class Categoria {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    
+    
+
+   
+
+    /* public List<Producto> getProductos() {
+        return productos;
+    } */
+
 
     /* public void setProductos(List<Producto> productos) {
         this.productos = productos;
