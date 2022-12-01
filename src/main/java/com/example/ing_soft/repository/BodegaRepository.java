@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface BodegaRepository extends JpaRepository<Bodega, Integer>{
     Optional <Bodega> findBodegaByNombre(String nombre);    
+    
 }
