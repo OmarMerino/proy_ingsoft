@@ -47,7 +47,7 @@ public class ProductoService {
             return false;
         }
     }
-
+    
     public boolean modificarPrecioById(int id, int precio){
         Optional<Producto> productoOptional = productoRepository.findById(id);
         Producto producto =new Producto();
@@ -66,4 +66,5 @@ public class ProductoService {
         }
 
     }
+    
 }

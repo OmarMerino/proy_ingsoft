@@ -37,12 +37,12 @@ public class BodegaRestControllerTest {
         JacksonTester.initFields(this, new ObjectMapper());
         mockMvc = MockMvcBuilders.standaloneSetup(bodegaRestController).build();
     }
-
+    /* 
     @Test
     void siInvocoGetAllBodegasEntoncesRetornaStatusOk() {
         //Given
         given(bodegaService.findAllBodegas()).willReturn(new ArrayList<Bodega>());
-    } 
+    } */
     
     
 

@@ -77,15 +77,16 @@ public class ProductoRestController {
     }
 
 
+    
+    @PutMapping (value ="/{id_producto},{precio}")
+    public ResponseEntity<Void> updatePrecioProducto (@PathVariable int id_producto,@PathVariable int precio){
+        boolean actualizado = productoService.modificarPrecioById(id_producto, precio);
 
-    @PutMapping (value = "")
-    public ResponseEntity<Void> updatePrecioProducto (@RequestParam int id,@RequestParam int precio){
-        boolean actualizado = productoService.modificarPrecioById(id, precio);
         if(actualizado){
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }
+    } 
     
 }
