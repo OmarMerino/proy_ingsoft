@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ing_soft.model.Producto;
@@ -72,6 +73,18 @@ public class ProductoRestController {
             return new ResponseEntity<>(productoOptional.get(),HttpStatus.OK);
         }else { 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
+    @PutMapping (value = "")
+    public ResponseEntity<Void> updatePrecioProducto (@RequestParam int id,@RequestParam int precio){
+        boolean actualizado = productoService.modificarPrecioById(id, precio);
+        if(actualizado){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
     

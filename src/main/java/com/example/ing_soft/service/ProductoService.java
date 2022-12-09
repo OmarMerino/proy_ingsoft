@@ -47,4 +47,23 @@ public class ProductoService {
             return false;
         }
     }
+
+    public boolean modificarPrecioById(int id, int precio){
+        Optional<Producto> productoOptional = productoRepository.findById(id);
+        Producto producto =new Producto();
+        
+        if (productoOptional.isPresent()){
+            producto.setId(id);
+            producto.setNombre(productoOptional.get().getNombre());
+            producto.setDescripcion(productoOptional.get().getDescripcion());
+            producto.setStock(productoOptional.get().getStock());
+            producto.setPrecio(precio);
+            
+            productoRepository.saveAndFlush(producto);
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }
