@@ -26,7 +26,7 @@ public class PermisoService {
 
     public boolean save(Permiso permiso) {
         permisoRepository.saveAndFlush(permiso);
-        Optional<Permiso> permisoOptional = permisoRepository.findPermisoByNombre(permiso.getNombre());
+        Optional<Permiso> permisoOptional = permisoRepository.findById(permiso.getId());
         return permisoOptional.isPresent();
     }
 

@@ -24,7 +24,7 @@ public class BodegaService {
 
     public boolean save(Bodega bodega){
         bodegaRepository.saveAndFlush(bodega);
-        Optional<Bodega> bodegaOptional = bodegaRepository.findBodegaByNombre(bodega.getNombre());
+        Optional<Bodega> bodegaOptional =bodegaRepository.findById(bodega.getId());
         return bodegaOptional.isPresent();
     }
 

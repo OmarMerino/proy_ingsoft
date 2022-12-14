@@ -24,12 +24,13 @@ public class ProductoService {
 
     public boolean save(Producto producto){
         productoRepository.saveAndFlush(producto);
-        Optional<Producto> productoOptional = productoRepository.findProductoByNombre(producto.getNombre());
+        Optional<Producto> productoOptional =productoRepository.findById(producto.getId());
         return productoOptional.isPresent();
     }
 
     public boolean update (Producto producto){
-        Optional<Producto> productoOptional = productoRepository.findProductoByNombre(producto.getNombre());
+        Optional<Producto> productoOptional = productoRepository.findById(producto.getId());
+
         if(productoOptional.isPresent()){
             productoRepository.saveAndFlush(producto);
             return true;
@@ -49,10 +50,14 @@ public class ProductoService {
     }
     
     public boolean modificarPrecioById(int id, int precio){
+
+
         Optional<Producto> productoOptional = productoRepository.findById(id);
+
         Producto producto =new Producto();
         
         if (productoOptional.isPresent()){
+
             producto.setId(id);
             producto.setNombre(productoOptional.get().getNombre());
             producto.setDescripcion(productoOptional.get().getDescripcion());
@@ -61,7 +66,35 @@ public class ProductoService {
             
             productoRepository.saveAndFlush(producto);
             return true;
+
         }else{
+
+            return false;
+        }
+
+    }
+
+    public boolean modificarDescripcionById(int id, String descripcion){
+        Optional<Producto> productoOptional = productoRepository.findById(id);
+
+
+        Producto producto =new Producto();
+        
+        
+        if (productoOptional.isPresent()){
+
+            producto.setId(id);
+            producto.setNombre(productoOptional.get().getNombre());
+            producto.setStock(productoOptional.get().getStock());
+            producto.setPrecio(productoOptional.get().getPrecio());
+
+            producto.setDescripcion(descripcion);
+            
+            productoRepository.saveAndFlush(producto);
+            return true;
+
+        }else{
+            
             return false;
         }
 

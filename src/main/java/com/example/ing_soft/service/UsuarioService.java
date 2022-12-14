@@ -24,7 +24,7 @@ public class UsuarioService{
 
     public boolean save (Usuario usuario){
         usuarioRepository.saveAndFlush(usuario);
-        Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByNombre(usuario.getNombre());
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(usuario.getId());
         return usuarioOptional.isPresent();
     }
 

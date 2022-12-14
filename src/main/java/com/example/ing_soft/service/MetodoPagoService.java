@@ -26,7 +26,7 @@ public class MetodoPagoService {
 
   public boolean save(MetodoPago metodopago) {
     metodopagoRepository.saveAndFlush(metodopago);
-    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findMetodoPagoByNombre(metodopago.getNombre());
+    Optional<MetodoPago> metodopagoOptional = metodopagoRepository.findById(metodopago.getId());
     return metodopagoOptional.isPresent();
 }
 
