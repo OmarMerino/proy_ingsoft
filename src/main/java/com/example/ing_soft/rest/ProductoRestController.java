@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ing_soft.model.Producto;
@@ -78,7 +77,7 @@ public class ProductoRestController {
 
 
     // MODIFICAR EL PRECIO DE UN PRODUCTO INDICANDO EL ID DEL PRODUCTO Y EL NUEVO PRECIO
-    @PutMapping (value ="/{id_producto},{precio}")
+    @PutMapping (value ="/precio/{id_producto}")
     public ResponseEntity<Void> updatePrecioProducto (@PathVariable int id_producto,@PathVariable int precio){
 
 

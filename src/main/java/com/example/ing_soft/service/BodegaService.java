@@ -22,6 +22,10 @@ public class BodegaService {
         return bodegaRepository.findById(id_bodega);
     }
 
+    public Optional<Bodega> findByNombre(String nombre){
+        return bodegaRepository.findBodegaByNombre(nombre);
+    }
+
     public boolean save(Bodega bodega){
         bodegaRepository.saveAndFlush(bodega);
         Optional<Bodega> bodegaOptional =bodegaRepository.findById(bodega.getId());
