@@ -78,7 +78,7 @@ public class ProductoRestController {
 
 
     // MODIFICAR EL PRECIO DE UN PRODUCTO INDICANDO EL ID DEL PRODUCTO Y EL NUEVO PRECIO
-    @PutMapping (value ="/{id_producto},{precio}")
+    @PutMapping (value ="/precio")
     public ResponseEntity<Void> updatePrecioProducto (@PathVariable int id_producto,@PathVariable int precio){
 
 

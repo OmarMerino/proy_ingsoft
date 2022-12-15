@@ -27,7 +27,7 @@ public class BodegaService {
         Optional<Bodega> bodegaOptional =bodegaRepository.findById(bodega.getId());
         return bodegaOptional.isPresent();
     }
-
+    
     public boolean update (Bodega bodega){
         Optional<Bodega> bodegaOptional = bodegaRepository.findById(bodega.getId());
         if(bodegaOptional.isPresent()){
