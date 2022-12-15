@@ -54,17 +54,13 @@ public class ProductoService {
 
         Optional<Producto> productoOptional = productoRepository.findById(id);
 
-        Producto producto =new Producto();
+       
         
         if (productoOptional.isPresent()){
 
-            producto.setId(id);
-            producto.setNombre(productoOptional.get().getNombre());
-            producto.setDescripcion(productoOptional.get().getDescripcion());
-            producto.setStock(productoOptional.get().getStock());
-            producto.setPrecio(precio);
+            productoOptional.get().setPrecio(precio);
             
-            productoRepository.saveAndFlush(producto);
+            productoRepository.saveAndFlush(productoOptional.get());
             return true;
 
         }else{

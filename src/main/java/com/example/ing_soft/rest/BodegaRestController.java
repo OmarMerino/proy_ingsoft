@@ -8,6 +8,7 @@ import com.example.ing_soft.model.Bodega;
 import com.example.ing_soft.service.BodegaService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping (value = "bodega", produces ="application/json")
@@ -25,6 +26,18 @@ public class BodegaRestController {
             return new ResponseEntity<> (HttpStatus.NOT_FOUND);
         }
     }
+ 
+    @GetMapping(value="/{nombre}")
+    public ResponseEntity<Bodega> getBodegaByNombre (@PathVariable String nombre){
+        Optional<Bodega> bodegaOptional= bodegaService.findByNombre(nombre);
+
+        if(bodegaOptional.isPresent()){
+            return new ResponseEntity<>(bodegaOptional.get(),HttpStatus.OK);
+        }else { 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 
     @PostMapping (value = "")
     public ResponseEntity<Void> addBodega (@RequestBody Bodega bodega){
