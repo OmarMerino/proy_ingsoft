@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -47,11 +48,29 @@ public class BodegaRestControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(bodegaRestController).build();
     }
 
+
+    //TESTING METODO ADDBODOGA SE PUEDE GRABAR RETORNA ESTADO CREADO
     @Test
     public void siInvocoAddBodegaYSePuedeGrabarRetornaStatusCreated() throws Exception{
         // Arrange
         Bodega bodega = getBodega();
-        given(bodegaService.save(any(Bodega.class))).willReturn(true);
+       
+        MockHttpServletResponse response = mockMvc
+                .perform(MockMvcRequestBuilders.post("/bodega").content(jsonBodega.write(bodega).getJson())
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+                System.out.println("dato del response que deberia entregarnos: "+response.getStatus());
+        System.out.println(response.getStatus());
+
+        
+    }
+
+    //TESTING METDO ADDBODEGA NO SE PUEDE GRABAR RETORNA BAD REQUEST;
+    @Test
+    public void siInvocoAddBodegaYNoSePuedeGrabarRetornaStatusBadRequest() throws Exception{
+        // Arrange
+        Bodega bodega = getBodega();
+        given(bodegaService.save(any(Bodega.class))).willReturn(false);
 
         // Act
         MockHttpServletResponse response = mockMvc
@@ -59,20 +78,28 @@ public class BodegaRestControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .content(jsonBodega.write(bodega).getJson())
                         .contentType(MediaType.APPLICATION_JSON)).andReturn().getResponse();
+                        System.out.println(response.getStatus());
 
         // Assert
-        assertEquals(HttpStatus.CREATED.value(),response.getStatus());
+        assertEquals(HttpStatus.BAD_REQUEST.value(),response.getStatus());
     }
-   
-   
-      
+     @Test
+    public void siInvocoGetBodegasRetornaStatusOk() throws Exception{
+        // Arrange
+        List<Bodega> bodegas = new ArrayList<>();
+        bodegas.add(getBodega());
+        given(bodegaService.findAllBodegas()).willReturn(bodegas);
+
+        // Act
+        MockHttpServletResponse response = mockMvc
+                .perform(MockMvcRequestBuilders.get("/bodega")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)).andReturn().getResponse();
+
+        // Assert
+         assertEquals(HttpStatus.OK.value(),response.getStatus()); 
+     } 
     
-    
-    
-
-
-
-
     public List<Bodega> findAllBodegas() {
         return bodegaRepository.findAll();
     }

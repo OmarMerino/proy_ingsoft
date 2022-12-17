@@ -12,7 +12,11 @@ import com.example.ing_soft.repository.BodegaRepository;
 @Service
 public class BodegaService {
     @Autowired
-    private BodegaRepository bodegaRepository;
+    private final BodegaRepository bodegaRepository;
+
+    public BodegaService(BodegaRepository bodegaRepository) {
+        this.bodegaRepository = bodegaRepository;
+    }
 
     public List<Bodega> findAllBodegas(){
         return bodegaRepository.findAll();
@@ -27,9 +31,14 @@ public class BodegaService {
     }
 
     public boolean save(Bodega bodega){
-        bodegaRepository.saveAndFlush(bodega);
         Optional<Bodega> bodegaOptional =bodegaRepository.findById(bodega.getId());
-        return bodegaOptional.isPresent();
+        if(bodegaOptional.isPresent()){
+            bodegaRepository.saveAndFlush(bodega);
+            bodegaOptional = bodegaRepository.findById(bodega.getId());
+            return bodegaOptional.isPresent();
+        }else{
+            return false;
+        }
     }
     
     public boolean update (Bodega bodega){
