@@ -36,9 +36,9 @@ public class BodegaRestControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private BodegaRepository bodegaRepository;
-    @Mock
     private BodegaService bodegaService;
+
+
     @InjectMocks
     private BodegaRestControllerTest bodegaRestController;
 
@@ -61,6 +61,10 @@ public class BodegaRestControllerTest {
                 .andReturn().getResponse();
                 System.out.println("dato del response que deberia entregarnos: "+response.getStatus());
         System.out.println(response.getStatus());
+
+        // Assert
+        assertEquals(HttpStatus.CREATED.value(), response.getStatus());
+
 
         
     }
@@ -100,10 +104,10 @@ public class BodegaRestControllerTest {
          assertEquals(HttpStatus.OK.value(),response.getStatus()); 
      } 
     
-    public List<Bodega> findAllBodegas() {
+    /* public List<Bodega> findAllBodegas() {
         return bodegaRepository.findAll();
     }
-
+ */
 
 
 

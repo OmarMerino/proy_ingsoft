@@ -11,7 +11,7 @@ import com.example.ing_soft.repository.BodegaRepository;
 
 @Service
 public class BodegaService {
-    @Autowired
+
     private final BodegaRepository bodegaRepository;
 
     public BodegaService(BodegaRepository bodegaRepository) {
@@ -34,7 +34,7 @@ public class BodegaService {
         Optional<Bodega> bodegaOptional =bodegaRepository.findById(bodega.getId());
         if(bodegaOptional.isPresent()){
             bodegaRepository.saveAndFlush(bodega);
-            bodegaOptional = bodegaRepository.findById(bodega.getId());
+            bodegaOptional = bodegaRepository.findBodegaByNombre(bodega.getNombre());
             return bodegaOptional.isPresent();
         }else{
             return false;
