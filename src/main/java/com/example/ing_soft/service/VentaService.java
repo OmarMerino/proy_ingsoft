@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class VentaService {
     @Autowired
-    private VentaRepository ventaRepository;
+    private final VentaRepository ventaRepository;
 
+
+    public VentaService(VentaRepository ventaRepository) {
+        this.ventaRepository = ventaRepository;
+    }
 
     public List<Venta> findAllVentas(){
         return ventaRepository.findAll();
@@ -24,9 +28,14 @@ public class VentaService {
     }
 
     public boolean save (Venta venta){
-        ventaRepository.saveAndFlush(venta);
-        Optional <Venta> ventaOptional=ventaRepository.findVentaById(venta.getId());
-        return ventaOptional.isPresent();
+        Optional<Venta> ventaOptional =ventaRepository.findById(venta.getId());
+        if(ventaOptional.isPresent()){
+            ventaRepository.saveAndFlush(venta);
+            ventaOptional = ventaRepository.findVentaById(venta.getId());
+            return ventaOptional.isPresent();
+        }else{
+            return false;
+        }
     }
     
 

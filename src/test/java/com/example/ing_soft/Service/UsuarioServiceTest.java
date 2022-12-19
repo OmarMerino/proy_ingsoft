@@ -42,17 +42,7 @@ public class UsuarioServiceTest {
         assertEquals(usuarios, usuariosResult);
     }
 
-    @Test
-    public void siInvocoGetUsuarioRetornaUsuario() throws Exception{
-        // Arrange
-        Usuario usuario = getUsuario();
-        when(usuarioRepository.findById(usuario.getRut())).thenReturn(java.util.Optional.ofNullable(usuario));
-        // Act
-        Usuario usuarioResult = 
-        // Assert
-        assertNotNull(usuarioResult);
-        assertEquals(usuario, usuarioResult);
-    }
+   
     
 
     public Usuario getUsuario(){
