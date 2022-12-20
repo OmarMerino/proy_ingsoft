@@ -65,7 +65,7 @@ public class ProductoRestController {
         }
     }
 
-    @GetMapping(value="/{id_producto}")
+    @GetMapping(value="/ById/{id_producto}")
     public ResponseEntity<Producto> getProductoById (@PathVariable int id_producto){
         Optional<Producto> productoOptional= productoService.findProductoById(id_producto);
         if(productoOptional.isPresent()){
@@ -74,6 +74,28 @@ public class ProductoRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+
+
+
+    @GetMapping(value="/{nombre}")
+    public ResponseEntity<Producto> getProductoByNombre (@PathVariable String nombre){
+        Optional<Producto> productoOptional= productoService.findByNombre(nombre);
+
+        if(productoOptional.isPresent()){
+            return new ResponseEntity<>(productoOptional.get(),HttpStatus.OK);
+        }else { 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    
+
+
+
+
+
 
 
     // MODIFICAR EL PRECIO DE UN PRODUCTO INDICANDO EL ID DEL PRODUCTO Y EL NUEVO PRECIO

@@ -22,6 +22,11 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
+    public Optional<Producto> findByNombre(String nombre){
+        return productoRepository.findProductoByNombre(nombre);
+    }
+
+
     public boolean save(Producto producto){
         productoRepository.saveAndFlush(producto);
         Optional<Producto> productoOptional =productoRepository.findById(producto.getId());
