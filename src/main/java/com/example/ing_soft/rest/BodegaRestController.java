@@ -29,6 +29,8 @@ public class BodegaRestController {
  
     @GetMapping(value="/{nombre}")
     public ResponseEntity<Bodega> getBodegaByNombre (@PathVariable String nombre){
+
+        
         Optional<Bodega> bodegaOptional= bodegaService.findByNombre(nombre);
 
         if(bodegaOptional.isPresent()){

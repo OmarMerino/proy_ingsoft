@@ -22,7 +22,7 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
-    public Optional<Producto> findProductoByNombre(String nombre){
+    public Optional<Producto> findByNombre(String nombre){
         return productoRepository.findProductoByNombre(nombre);
     }
 
