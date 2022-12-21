@@ -1,7 +1,10 @@
 package com.example.ing_soft.Service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -54,15 +57,35 @@ public class VentaServiceTest {
     }
 
     @Test
-    public void siInvocoSaveVentaRetornaTrue() throws Exception{
+    public void siInvocoSaveDeVentaDebeRetornarIsPresent() throws Exception{
         // Arrange
         Venta venta = getVenta();
+        when(ventaRepository.findById(venta.getId())).thenReturn(java.util.Optional.of(venta));
         when(ventaRepository.saveAndFlush(venta)).thenReturn(venta);
+        when(ventaRepository.findVentaById(venta.getId())).thenReturn(java.util.Optional.of(venta));
         // Act
         boolean result = ventaService.save(venta);
         // Assert
-        assertEquals(true, result);
+        assertTrue(result);
+        verify(ventaRepository).saveAndFlush(venta);
     }
+
+    @Test
+    public void siInvocoSaveDeVentaYNoHaceSaveDebeRetornarFalse(){
+        Venta venta = getVenta();
+        when(ventaRepository.findById(venta.getId())).thenReturn(java.util.Optional.of(venta));
+        when(ventaRepository.saveAndFlush(venta)).thenReturn(null);
+       
+        // Act
+        boolean result = ventaService.save(venta);
+        
+        // Assert
+        assertFalse(result);
+
+        verify(ventaRepository).saveAndFlush(venta);
+
+    }
+       
 
     private Venta getVenta() {
         Venta venta = new Venta();
