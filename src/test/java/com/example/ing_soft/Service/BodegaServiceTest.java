@@ -1,14 +1,11 @@
 package com.example.ing_soft.Service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -112,6 +109,30 @@ public class BodegaServiceTest {
         assertFalse(result);
         verify(bodegaRepository).saveAndFlush(bodega);
     }
+
+    @Test
+    public void siInvocoFindBodegaByNombreDebeRetornarBodega(){
+        // Arrange
+        Bodega bodega = getBodega();
+        when(bodegaRepository.findBodegaByNombre(bodega.getNombre())).thenReturn(java.util.Optional.of(bodega));
+        // Act
+       Optional<Bodega> bodegaResult = bodegaService.findByNombre(bodega.getNombre());
+        // Assert
+        assertNotNull(bodegaResult);
+        assertEquals(bodega, bodegaResult.get());
+    }
+
+    @Test
+    public void siInvocoFindBodegaByNombreYNoExisteBodegaDebeRetornarNull(){
+        // Arrange
+        Bodega bodega = getBodega();
+        when(bodegaRepository.findBodegaByNombre(bodega.getNombre())).thenReturn(null);
+        // Act
+        Optional<Bodega> bodegaResult = bodegaService.findByNombre(bodega.getNombre());
+        // Assert
+        assertNull(bodegaResult);
+    }
+   
 
 
 

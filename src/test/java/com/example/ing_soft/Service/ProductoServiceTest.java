@@ -1,8 +1,6 @@
 package com.example.ing_soft.Service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -38,7 +36,7 @@ public class ProductoServiceTest {
         boolean result = productoService.modificarPrecioById(producto.getId(), producto.getPrecio());
         // Assert
         assertTrue(result);  
-       /*  verify(productoRepository).save(producto); */
+        verify(productoRepository).saveAndFlush(producto);
 
     }
 
@@ -51,7 +49,7 @@ public class ProductoServiceTest {
         boolean result = productoService.modificarPrecioById(producto.getId(), producto.getPrecio());
         // Assert
         assertFalse(result);  
-        /* verify(productoRepository).save(producto); */
+      
 
     }
 
@@ -64,8 +62,8 @@ public class ProductoServiceTest {
         boolean result = productoService.modificarDescripcionById(producto.getId(), producto.getDescripcion());
         // Assert
         assertTrue(result);  
-        /* verify(productoRepository).save(producto); */
-
+        verify(productoRepository).saveAndFlush(producto);
+        
     }
 
     @Test
@@ -77,7 +75,7 @@ public class ProductoServiceTest {
         boolean result = productoService.modificarDescripcionById(producto.getId(), producto.getDescripcion());
         // Assert
         assertFalse(result);  
-        /* verify(productoRepository).save(producto); */
+        
 
     }
 

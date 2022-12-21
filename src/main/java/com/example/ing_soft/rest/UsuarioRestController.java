@@ -72,7 +72,7 @@ public class UsuarioRestController {
 
      // Listar usuarios por ID
      @GetMapping(value = "/{rut}")
-     public ResponseEntity<Usuario> getUsuarioById(@PathVariable int rut) {
+     public ResponseEntity<Usuario> getUsuarioById(@PathVariable String rut) {
          Optional<Usuario> usuarioOptional = usuarioService.findUsuarioByRut(rut);
          if(usuarioOptional.isPresent()){
              return new ResponseEntity<>(usuarioOptional.get(), HttpStatus.OK);
