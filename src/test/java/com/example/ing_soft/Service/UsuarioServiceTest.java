@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -65,12 +66,14 @@ public class UsuarioServiceTest {
     @Test
     public void siInvocoSaveUsuarioDebeRetornarIsPresent(){
         // Arrange
-        Usuario usuario = new Usuario();
-        when(usuarioRepository.save(usuario)).thenReturn(usuario);
+        Usuario usuario = getUsuario();
+        when(usuarioRepository.findById(usuario.getId())).thenReturn(java.util.Optional.of(usuario));
+        when(usuarioRepository.saveAndFlush(usuario)).thenReturn(usuario);
         // Act
-        Optional<Usuario> result = usuarioService.save(usuario);
+        boolean result = usuarioService.save(usuario);
         // Assert
-        assertTrue(result.isPresent());
+        assertTrue(result);
+        verify(usuarioRepository).saveAndFlush(usuario);
     }
 
     public Usuario getUsuario() {
