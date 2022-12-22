@@ -11,8 +11,8 @@ import com.example.ing_soft.repository.BodegaRepository;
 
 @Service
 public class BodegaService {
-
-    private final BodegaRepository bodegaRepository;
+    @Autowired
+    private BodegaRepository bodegaRepository;
 
     public BodegaService(BodegaRepository bodegaRepository) {
         this.bodegaRepository = bodegaRepository;
