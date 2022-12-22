@@ -130,6 +130,7 @@ public class BodegaServiceTest {
         Optional<Bodega> bodegaResult = bodegaService.findByNombre(bodega.getNombre());
         // Assert
         assertNull(bodegaResult);
+        
     }
    
 
