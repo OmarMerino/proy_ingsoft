@@ -62,7 +62,6 @@ public class BodegaServiceTest {
         Bodega bodega = getBodega();
         when(bodegaRepository.findById(bodega.getId())).thenReturn(java.util.Optional.of(bodega));
         when(bodegaRepository.saveAndFlush(bodega)).thenReturn(bodega);
-        when(bodegaRepository.findBodegaByNombre(bodega.getNombre())).thenReturn(java.util.Optional.of(bodega));
         // Act
         boolean result = bodegaService.save(bodega);
         // Assert

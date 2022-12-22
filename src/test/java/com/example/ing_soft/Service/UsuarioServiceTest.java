@@ -1,11 +1,14 @@
 package com.example.ing_soft.Service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,8 +20,7 @@ import com.example.ing_soft.model.Usuario;
 import com.example.ing_soft.repository.UsuarioRepository;
 import com.example.ing_soft.service.UsuarioService;
 
-
-@ExtendWith(MockitoExtension.class) 
+@ExtendWith(MockitoExtension.class)
 public class UsuarioServiceTest {
     @Mock
     private UsuarioRepository usuarioRepository;
@@ -26,7 +28,7 @@ public class UsuarioServiceTest {
     private UsuarioService usuarioService;
 
     @Test
-    public void siInvocoFindAllUsuarioRetornaListaUsuario() throws Exception{
+    public void siInvocoFindAllUsuarioRetornaListaUsuario() throws Exception {
         // Arrange
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(getUsuario());
@@ -35,14 +37,43 @@ public class UsuarioServiceTest {
         List<Usuario> usuariosResult = usuarioService.findAllUsuarios();
         // Assert
         assertNotNull(usuariosResult);
-        assertEquals(usuarios.size(),usuariosResult.size());
+        assertEquals(usuarios.size(), usuariosResult.size());
         assertEquals(usuarios, usuariosResult);
     }
 
-   
-    
+    @Test
+    public void siInvocoDeleteUsuarioDebeRetornarTrue() {
+        // Arrange
+        Usuario usuario = new Usuario();
+        when(usuarioRepository.findById(12345678 - 9)).thenReturn(Optional.of(usuario));
+        // Act
+        boolean result = usuarioService.deleteUsuarioByRut(12345678 - 9);
+        // Assert
+        assertTrue(result);
+    }
 
-    public Usuario getUsuario(){
+    @Test
+    public void siInvocoDeleteUsuarioDebeRetornarFalse(){
+        // Arrange
+        when(usuarioRepository.findById(12345678 - 9)).thenReturn(Optional.empty());
+        // Act
+        boolean result = usuarioService.deleteUsuarioByRut(12345678 - 9);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void siInvocoSaveUsuarioDebeRetornarIsPresent(){
+        // Arrange
+        Usuario usuario = new Usuario();
+        when(usuarioRepository.save(usuario)).thenReturn(usuario);
+        // Act
+        Optional<Usuario> result = usuarioService.save(usuario);
+        // Assert
+        assertTrue(result.isPresent());
+    }
+
+    public Usuario getUsuario() {
         Usuario usuario = new Usuario();
         usuario.setRut("12345678-9");
         usuario.setNombre("Juan");
@@ -53,11 +84,10 @@ public class UsuarioServiceTest {
         return usuario;
     }
 
-    public List<Usuario> getUsuarios(){
+    public List<Usuario> getUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(getUsuario());
         return usuarios;
     }
-
 
 }

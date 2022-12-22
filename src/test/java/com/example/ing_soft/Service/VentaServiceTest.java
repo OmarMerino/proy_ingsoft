@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -72,18 +73,16 @@ public class VentaServiceTest {
 
     @Test
     public void siInvocoSaveDeVentaYNoHaceSaveDebeRetornarFalse(){
+        // Arrange
         Venta venta = getVenta();
         when(ventaRepository.findById(venta.getId())).thenReturn(java.util.Optional.of(venta));
-        when(ventaRepository.saveAndFlush(venta)).thenReturn(null);
-       
+        when(ventaRepository.saveAndFlush(venta)).thenReturn(venta);
+        when(ventaRepository.findVentaById(venta.getId())).thenReturn(Optional.empty());
         // Act
         boolean result = ventaService.save(venta);
-        
         // Assert
         assertFalse(result);
-
         verify(ventaRepository).saveAndFlush(venta);
-
     }
        
 
