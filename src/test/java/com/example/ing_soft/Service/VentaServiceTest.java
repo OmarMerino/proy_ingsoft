@@ -63,7 +63,7 @@ public class VentaServiceTest {
         Venta venta = getVenta();
         when(ventaRepository.findById(venta.getId())).thenReturn(java.util.Optional.of(venta));
         when(ventaRepository.saveAndFlush(venta)).thenReturn(venta);
-        when(ventaRepository.findVentaById(venta.getId())).thenReturn(java.util.Optional.of(venta));
+        
         // Act
         boolean result = ventaService.save(venta);
         // Assert
@@ -94,12 +94,12 @@ public class VentaServiceTest {
         venta.setTotal(10000);
         return venta;
     }
-
+    /* 
     private List<Venta> getVentas() {
         List<Venta> ventas = new ArrayList<>();
         ventas.add(getVenta());
         return ventas;
-    }
+    }*/
 
 
     

@@ -2,7 +2,7 @@ package com.example.ing_soft.model;
 
 import javax.persistence.*;
 
-import java.util.List;
+
 
 @Entity
 @Table(name = "categoria")

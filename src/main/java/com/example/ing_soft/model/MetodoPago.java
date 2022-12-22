@@ -1,7 +1,5 @@
 package com.example.ing_soft.model;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
