@@ -56,11 +56,16 @@ public class ProductoService {
     public boolean modificarPrecioById(int id, int precio) {
 
         Optional<Producto> productoOptional = productoRepository.findById(id);
-        Producto producto = new Producto();
+        Producto producto=new Producto();
 
         if (productoOptional.isPresent()) {
+            producto.setId(id);
+            producto.setNombre(productoOptional.get().getNombre());
+            producto.setDescripcion(productoOptional.get().getDescripcion());
+            producto.setStock(productoOptional.get().getStock());
+
             producto.setPrecio(precio);
-            productoRepository.saveAndFlush(productoOptional.get());
+            productoRepository.saveAndFlush(producto);
             return true;
 
         } else {
@@ -76,7 +81,14 @@ public class ProductoService {
 
         if (productoOptional.isPresent()) {
             producto.setDescripcion(descripcion);
-            productoRepository.saveAndFlush(productoOptional.get());
+            producto.setId(id);
+            producto.setNombre(productoOptional.get().getNombre());
+            producto.setStock(productoOptional.get().getStock());
+            producto.setPrecio(productoOptional.get().getPrecio());
+
+
+            productoRepository.saveAndFlush(producto);
+
             return true;
 
         } else {

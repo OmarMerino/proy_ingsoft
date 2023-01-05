@@ -18,8 +18,8 @@ public class UsuarioService{
         return usuarioRepository.findAll();
     }
 
-    public Optional<Usuario> findUsuarioByRut(String string){
-        return usuarioRepository.findById(string);
+    public Optional<Usuario> findUsuarioById(int id){
+        return usuarioRepository.findById(id);
     }
 
     public boolean save (Usuario usuario){
@@ -41,10 +41,16 @@ public class UsuarioService{
         }
     }
 
-    public boolean deleteUsuarioByRut(int rut){
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(rut);
+    public boolean changePassword(int id, String password){
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        
+        return true;
+    }
+
+    public boolean deleteUsuarioById(int id){
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         if(usuarioOptional.isPresent()){
-            usuarioRepository.deleteById(rut);
+            usuarioRepository.deleteById(id);
             return true;
         }else{
             return false;
