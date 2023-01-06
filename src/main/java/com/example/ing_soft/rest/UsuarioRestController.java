@@ -47,10 +47,10 @@ public class UsuarioRestController {
         }
     }
 
-    // Eliminar Usuarios segun RUT
-    @DeleteMapping(value = "/{rut}")
-    public ResponseEntity<Void> deleteUsuarioById(@PathVariable int rut){
-        boolean eliminado = usuarioService.deleteUsuarioByRut(rut);
+    // Eliminar Usuarios segun ID
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteUsuarioById(@PathVariable int id){
+        boolean eliminado = usuarioService.deleteUsuarioById(id);
 
         if(eliminado){
             return new ResponseEntity<>(HttpStatus.OK);
@@ -71,13 +71,26 @@ public class UsuarioRestController {
     }
 
      // Listar usuarios por ID
-     @GetMapping(value = "/{rut}")
-     public ResponseEntity<Usuario> getUsuarioById(@PathVariable String rut) {
-         Optional<Usuario> usuarioOptional = usuarioService.findUsuarioByRut(rut);
+     @GetMapping(value = "/{id}")
+     public ResponseEntity<Usuario> getUsuarioById(@PathVariable int id) {
+         Optional<Usuario> usuarioOptional = usuarioService.findUsuarioById(id);
          if(usuarioOptional.isPresent()){
              return new ResponseEntity<>(usuarioOptional.get(), HttpStatus.OK);
          }else{
              return new ResponseEntity<>(HttpStatus.NOT_FOUND);
          }
-     }   
+     }
+     
+     //editar contraseña de un usuario 
+    
+    @PutMapping (value = "/{id}/{pass}")
+    public ResponseEntity<Void> changePassword(@PathVariable int id, @PathVariable String pass){
+        boolean actualizado = usuarioService.changePassword(id, pass);
+        if(actualizado){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

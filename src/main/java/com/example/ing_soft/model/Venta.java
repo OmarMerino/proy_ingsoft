@@ -18,6 +18,9 @@ public class Venta {
     private int descuento;
     @Column(name = "total")
     private int total;
+    @ManyToOne
+    @JoinColumn(name = "id_pago")
+    private MetodoPago metodo_pago;
    /*  // usuario-venta
     @ManyToOne
     @JoinColumn(name = "rut")
@@ -63,6 +66,14 @@ public class Venta {
         this.total = total;
     }
 
+    public MetodoPago getMetodo_pago() {
+        return metodo_pago;
+    }
+
+    public void setMetodo_pago(MetodoPago metodo_pago) {
+        this.metodo_pago = metodo_pago;
+    }
+
     /* public Usuario getUsuario() {
         return usuario;
     }
@@ -71,13 +82,7 @@ public class Venta {
         this.usuario = usuario;
     }
 
-    public MetodoPago getMetodo_pago() {
-        return metodo_pago;
-    }
-
-    public void setMetodo_pago(MetodoPago metodo_pago) {
-        this.metodo_pago = metodo_pago;
-    }
+    
 
     public List<Vendido> getVendidos() {
         return vendidos;

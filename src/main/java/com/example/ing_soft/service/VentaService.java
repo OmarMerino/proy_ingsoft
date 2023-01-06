@@ -1,6 +1,8 @@
 package com.example.ing_soft.service;
 
+import com.example.ing_soft.model.MetodoPago;
 import com.example.ing_soft.model.Venta;
+import com.example.ing_soft.repository.MetodoPagoRepository;
 import com.example.ing_soft.repository.VentaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,14 @@ import java.util.Optional;
 public class VentaService {
     @Autowired
     private  VentaRepository ventaRepository;
+    @Autowired
+    private  MetodoPagoRepository metodoPagoRepository;
 
-
-    public VentaService(VentaRepository ventaRepository) {
-        this.ventaRepository = ventaRepository;
+    public VentaService(VentaRepository ventaRepository,MetodoPagoRepository  metodoPagoRepository){
+        this.ventaRepository=ventaRepository;
+        this.metodoPagoRepository=metodoPagoRepository;
     }
+    
 
     public List<Venta> findAllVentas(){
         return ventaRepository.findAll();
@@ -52,5 +57,26 @@ public class VentaService {
         }else{
             return false;
         }        
+    }
+
+    public boolean seleccionarMetodoPago(int id_venta,int metodoPago){
+        //buscar venta por id
+        Optional<Venta> ventaOptional = ventaRepository.findById(id_venta);
+        if(ventaOptional.isPresent()){
+            //buscar metodo de pago seleccionado por id
+            Optional<MetodoPago> pago=metodoPagoRepository.findById(metodoPago);
+            if(pago.isPresent()){
+                //setear metodo de pago en la venta encontrada
+                ventaOptional.get().setMetodo_pago(pago.get());
+
+                ventaRepository.saveAndFlush(ventaOptional.get());
+                return true;
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }     
     }
 }

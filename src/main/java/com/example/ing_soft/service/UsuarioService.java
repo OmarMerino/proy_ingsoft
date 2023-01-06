@@ -44,7 +44,16 @@ public class UsuarioService{
     public boolean changePassword(int id, String password){
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
         
-        return true;
+        if(usuarioOptional.isPresent()){
+
+            usuarioOptional.get().setContraseña(password);
+            
+            usuarioRepository.saveAndFlush(usuarioOptional.get());
+
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean deleteUsuarioById(int id){

@@ -67,6 +67,17 @@ public class VentaRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-        
+
+    @PutMapping(value="metodoPago/{id_venta}/{id_pago}")
+    public ResponseEntity<Void> seleccionarMetodoPago(@PathVariable int id_venta, @PathVariable int id_pago){
+
+        boolean seleccionMetodo = ventaService.seleccionarMetodoPago(id_venta,id_pago);
+
+        if(seleccionMetodo){
+            return new ResponseEntity<> (HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

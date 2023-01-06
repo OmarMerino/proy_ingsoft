@@ -1,5 +1,7 @@
 package com.example.ing_soft.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,9 +17,9 @@ public class MetodoPago {
     @Column(name = "tipo")
     private String tipo;
 
-   /*  @OneToMany
+    @OneToMany
     @JoinColumn(name = "id_venta")
-    private List<Venta> ventas; */
+    private List<Venta> ventas; 
 
     public MetodoPago() {
 
@@ -47,12 +49,12 @@ public class MetodoPago {
         this.tipo = tipo;
     }
 
-   /*  public List<Venta> getVentas() {
+     public List<Venta> getVentas() {
         return ventas;
     }
 
     public void setVentas(List<Venta> ventas) {
         this.ventas = ventas;
-    } */
+    } 
 
 }
