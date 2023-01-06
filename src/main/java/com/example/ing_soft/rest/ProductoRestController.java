@@ -126,4 +126,11 @@ public class ProductoRestController {
         }
     }      
     
+    
+    @GetMapping(value="buscarStock/{nombre}")
+    public ResponseEntity<Integer> getStockByNombre (@PathVariable String nombre){
+        int productoOptional=  productoService.findStockByNombre(nombre);     
+        return new ResponseEntity<>(productoOptional,HttpStatus.OK);      
+    }
+
 }

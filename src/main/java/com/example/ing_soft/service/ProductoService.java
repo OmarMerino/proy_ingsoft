@@ -97,5 +97,9 @@ public class ProductoService {
         }
 
     }
+    public int findStockByNombre(String nombre) {
+        Optional<Producto> productoOptional =  productoRepository.findProductoByNombre( nombre);
+        return productoOptional.get().getStock();      
+    }
 
 }
