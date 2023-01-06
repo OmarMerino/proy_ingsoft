@@ -14,10 +14,10 @@ public class Bodega {
     @Column(name = "nombre")
     private String nombre;
 
-   /*  @ManyToOne
+    @ManyToOne
     @JoinTable(name = "id")
     
-    private Existe existe; */
+    private Existe existe; 
 
     public Bodega() {
 
@@ -47,12 +47,12 @@ public class Bodega {
         this.nombre = nombre;
     }
 
-    /* public Existe getExiste() {
+     public Existe getExiste() {
         return existe;
     }
 
     public void setExiste(Existe existe) {
         this.existe = existe;
-    } */
+    } 
 
 }

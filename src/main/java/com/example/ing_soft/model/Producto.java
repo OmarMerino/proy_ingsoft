@@ -3,6 +3,8 @@ package com.example.ing_soft.model;
 
 
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,18 +22,17 @@ public class Producto {
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
-
-   /*  @ManyToOne
+    @ManyToOne
     @JoinTable(name = "id_existe")
     private Existe existe;
-
+    
     @ManyToOne
     @JoinTable(name = "id_vendido")
     private Vendido vendido;
 
     @ManyToMany
     @JoinTable(name = "Pertenece", joinColumns = @JoinColumn(name = "id_producto"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
-    private List<Categoria> categorias; */
+    private List<Categoria> categorias; 
 
     public Producto() {
     }
