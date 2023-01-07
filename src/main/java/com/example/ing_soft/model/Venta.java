@@ -3,6 +3,8 @@ package com.example.ing_soft.model;
 
 
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,18 +23,14 @@ public class Venta {
     @ManyToOne
     @JoinColumn(name = "id_pago")
     private MetodoPago metodo_pago;
-   /*  // usuario-venta
+    // usuario-venta
     @ManyToOne
     @JoinColumn(name = "rut")
     private Usuario usuario;
-    // metodo pago-venta
-    @ManyToOne
-    @JoinColumn(name = "id_pago")
-    private MetodoPago metodo_pago;
     // una venta esta en muchos vendido
     @OneToMany
     @JoinColumn(name = "id_vendido")
-    private List<Vendido> vendidos; */
+    private List<Vendido> vendidos; 
 
     public int getId() {
         return id;
@@ -91,6 +89,7 @@ public class Venta {
     public void setVendidos(List<Vendido> vendidos) {
         this.vendidos = vendidos;
     } */
+    
 
     public Venta() {
     }

@@ -1,5 +1,7 @@
 package com.example.ing_soft.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -13,8 +15,8 @@ public class Categoria {
     @Column(name = "nombre")
     private String nombre;
 
-     /* @ManyToMany(mappedBy = "categorias")
-    private List<Producto> productos; */
+    @ManyToMany(mappedBy = "categorias")
+    private List<Producto> productos; 
 
     public Categoria() {
     }
@@ -34,19 +36,14 @@ public class Categoria {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    
-    
-
-   
-
-    /* public List<Producto> getProductos() {
+ 
+    public List<Producto> getProductos() {
         return productos;
-    } */
+    } 
 
 
-    /* public void setProductos(List<Producto> productos) {
+     public void setProductos(List<Producto> productos) {
         this.productos = productos;
-    } */
+    } 
 
 }

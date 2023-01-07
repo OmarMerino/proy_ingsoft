@@ -16,7 +16,6 @@ public class Bodega {
 
     @ManyToOne
     @JoinTable(name = "id")
-    
     private Existe existe; 
 
     public Bodega() {

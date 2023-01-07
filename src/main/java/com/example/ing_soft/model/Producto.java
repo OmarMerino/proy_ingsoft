@@ -76,6 +76,16 @@ public class Producto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+    public void addCategoria(Categoria categoria){
+        categorias.add(categoria);
+    }
 
     /* public Existe getExiste() {
         return existe;
@@ -93,12 +103,6 @@ public class Producto {
         this.vendido = vendido;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    } */
+     */
 
 }
