@@ -51,7 +51,7 @@ public class Venta {
     }
 
     public int getDescuento() {
-        return descuento;
+        return descuento;//1%-100%
     }
 
     public void setDescuento(int descuento) {

@@ -79,4 +79,22 @@ public class VentaService {
             return false;
         }     
     }
+
+    public boolean agregarDescuento(int id_venta,int descuento){
+        
+        Optional<Venta> ventaOptional = ventaRepository.findById(id_venta);
+        if(ventaOptional.isPresent()){
+            if(ventaOptional.isPresent()){
+                ventaOptional.get().setTotal(ventaOptional.get().getTotal()*(descuento/100));
+
+                ventaRepository.saveAndFlush(ventaOptional.get());
+                return true;
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }     
+    }
 }
