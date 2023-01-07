@@ -79,7 +79,7 @@ public class ProductoRestController {
 
 
 
-    @GetMapping(value="/{nombre}")
+    @GetMapping(value="/ByNombre/{nombre}")
     public ResponseEntity<Producto> getProductoByNombre (@PathVariable String nombre){
         Optional<Producto> productoOptional= productoService.findByNombre(nombre);
 
@@ -129,8 +129,8 @@ public class ProductoRestController {
     
     @GetMapping(value="buscarStock/{nombre}")
     public ResponseEntity<Integer> getStockByNombre (@PathVariable String nombre){
-        int productoOptional=  productoService.findStockByNombre(nombre);     
-        return new ResponseEntity<>(productoOptional,HttpStatus.OK);      
+        Integer productoOptional=  productoService.findStockByNombre(nombre);     
+        return new ResponseEntity<>(productoOptional,HttpStatus.OK);
     }
 
 }
