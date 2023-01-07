@@ -37,6 +37,16 @@ public class CategoriaRestController {
         }
     }
 
+    @GetMapping(value="ByNombre/{nombre}")
+    public ResponseEntity<Categoria> getCategoriaByNombre (@PathVariable String nombre){
+        Optional<Categoria> categoriaOptional= categoriaService.findCategoriaByNombre(nombre);
+        if(categoriaOptional.isPresent()){
+            return new ResponseEntity<>(categoriaOptional.get(),HttpStatus.OK);
+        }else { 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping(value = "")
     public ResponseEntity<Void> addCategoria (@RequestBody Categoria categoria){
         boolean create = categoriaService.save(categoria);

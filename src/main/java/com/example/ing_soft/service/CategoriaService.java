@@ -23,6 +23,10 @@ public class CategoriaService{
         return categoriaRepository.findById(id_categoria);
     }
 
+    public Optional <Categoria> findCategoriaByNombre(String nombre){
+        return categoriaRepository.findCategoriaByNombre(nombre);
+    }
+
     public boolean save (Categoria categoria){
         categoriaRepository.saveAndFlush(categoria);
         Optional <Categoria> categoriaOptional=categoriaRepository.findById(categoria.getId());
