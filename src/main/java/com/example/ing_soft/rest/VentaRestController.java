@@ -79,7 +79,7 @@ public class VentaRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    /* 
     @PutMapping(value="agregaDescuento/{id_venta}/{descuento}")
     public ResponseEntity<Void> agregarDescuento(@PathVariable int id_venta, @PathVariable int descuento){
 
@@ -90,5 +90,5 @@ public class VentaRestController {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 }
