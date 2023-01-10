@@ -71,7 +71,7 @@ public class BodegaRestController {
         }
     }
     //buscar bodega by id
-    @GetMapping(value="/{id_bodega}")
+    @GetMapping(value="ById/{id_bodega}")
     public ResponseEntity<Bodega> getBodegaById (@PathVariable int id_bodega){
 
         

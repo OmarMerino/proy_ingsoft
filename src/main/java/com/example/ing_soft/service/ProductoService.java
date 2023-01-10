@@ -105,15 +105,10 @@ public class ProductoService {
     public boolean modificarStockById(int id, int stock) {
 
         Optional<Producto> productoOptional = productoRepository.findById(id);
-        Producto producto=new Producto();
-
+        
         if (productoOptional.isPresent()) {
-            producto.setId(id);
-            producto.setNombre(productoOptional.get().getNombre());
-            producto.setDescripcion(productoOptional.get().getDescripcion());
-            producto.setStock(productoOptional.get().getPrecio());
-            producto.setStock(stock);
-            productoRepository.saveAndFlush(producto);
+            productoOptional.get().setStock(stock);
+            productoRepository.saveAndFlush(productoOptional.get());
             return true;
 
         } else {
