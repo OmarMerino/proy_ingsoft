@@ -79,5 +79,16 @@ public class VentaRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    /* 
+    @PutMapping(value="agregaDescuento/{id_venta}/{descuento}")
+    public ResponseEntity<Void> agregarDescuento(@PathVariable int id_venta, @PathVariable int descuento){
 
+        boolean venta = ventaService.agregarDescuento(id_venta,descuento);
+
+        if(venta){
+            return new ResponseEntity<> (HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }*/
 }

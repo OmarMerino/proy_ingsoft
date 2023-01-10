@@ -78,6 +78,17 @@ public class BodegaRestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    //buscar bodega by id
+    @GetMapping(value="ById/{id_bodega}")
+    public ResponseEntity<Bodega> getBodegaById (@PathVariable int id_bodega){
+
+        
+        Optional<Bodega> bodegaOptional= bodegaService.findBodegaById(id_bodega);
+
+        if(bodegaOptional.isPresent()){
+            return new ResponseEntity<>(bodegaOptional.get(),HttpStatus.OK);
+        }else { 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

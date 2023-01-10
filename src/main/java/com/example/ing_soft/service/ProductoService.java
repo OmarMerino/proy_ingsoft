@@ -102,4 +102,18 @@ public class ProductoService {
         return productoOptional.get().getStock();      
     }
 
+    public boolean modificarStockById(int id, int stock) {
+
+        Optional<Producto> productoOptional = productoRepository.findById(id);
+        
+        if (productoOptional.isPresent()) {
+            productoOptional.get().setStock(stock);
+            productoRepository.saveAndFlush(productoOptional.get());
+            return true;
+
+        } else {
+            return false;
+
+        }
+    }
 }

@@ -112,7 +112,7 @@ public class ProductoRestController {
         }
     }
 
-    // MODIFICAR EL DESCRIPCION DE UN PRODUCTO INDICANDO EL ID DEL PRODUCTO Y EL NUEVO PRECIO
+    // MODIFICAR EL DESCRIPCION DE UN PRODUCTO INDICANDO EL ID DEL PRODUCTO Y LA NUEVA DESCRIPCION
     @PutMapping (value ="descripcion/{id_producto}/{descripcion}")
     public ResponseEntity<Void> updateDescpricionProducto (@PathVariable int id_producto,@PathVariable String descripcion){
 
@@ -126,11 +126,25 @@ public class ProductoRestController {
         }
     }      
     
-    
+    //Buscar stock de un producto por nombre
     @GetMapping(value="buscarStock/{nombre}")
     public ResponseEntity<Integer> getStockByNombre (@PathVariable String nombre){
         Integer productoOptional=  productoService.findStockByNombre(nombre);     
         return new ResponseEntity<>(productoOptional,HttpStatus.OK);
+    }
+
+    // MODIFICAR EL STOCK DE UN PRODUCTO INDICANDO EL ID DEL PRODUCTO Y EL NUEVO STOCK
+    @PutMapping (value ="/stock/{id_producto}/{stock}")
+    public ResponseEntity<Void> ModificarStockById(@PathVariable int id_producto,@PathVariable int stock){
+
+
+        boolean actualizado = productoService.modificarStockById(id_producto, stock);
+
+        if(actualizado){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
