@@ -56,5 +56,20 @@ public class BodegaService {
         }
     }
 
+    public boolean cambiarUbicacion(String ubicacion, String bodega){
+        Optional<Bodega> bodegaOptional = bodegaRepository.findBodegaByNombre(bodega);
+
+        if(bodegaOptional.isPresent()){
+
+           bodegaOptional.get().setUbicacion(ubicacion);
+
+           bodegaRepository.saveAndFlush(bodegaOptional.get());
+           
+           return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }

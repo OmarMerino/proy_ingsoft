@@ -70,4 +70,14 @@ public class BodegaRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping (value = "/ubicacion/{ubicacion}/{bodega}")
+    public ResponseEntity<Void> updateUbicacionBodega(@PathVariable String ubicacion,@PathVariable String bodega){
+        boolean actualizado = bodegaService.cambiarUbicacion(ubicacion,bodega);
+        if(actualizado){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
