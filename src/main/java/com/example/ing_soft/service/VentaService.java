@@ -83,10 +83,16 @@ public class VentaService {
     public boolean agregarDescuento(int id_venta,int descuento){
         
         Optional<Venta> ventaOptional = ventaRepository.findById(id_venta);
+        int total=ventaOptional.get().getTotal();
+        int descontado=total-(total*((descuento)/100));
+
         if(ventaOptional.isPresent()){
             if(ventaOptional.isPresent()){
-                ventaOptional.get().setTotal(ventaOptional.get().getTotal()*(descuento/100));
 
+                ventaOptional.get().setTotal(total-descontado);
+
+                ventaOptional.get().setDescuento(descuento);
+                
                 ventaRepository.saveAndFlush(ventaOptional.get());
                 return true;
             }else{
