@@ -146,5 +146,18 @@ public class ProductoRestController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    //obtener produtos que tengan stock=0
+    @GetMapping (value = "/productos0Stock")
+    public  ResponseEntity<List<Producto>> productosSinStock (){
+
+        List<Producto> productoList = productoService.listarProductosSinStock();
+        
+        if(!productoList.isEmpty()){
+            return new ResponseEntity<> (productoList, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }

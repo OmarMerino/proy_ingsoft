@@ -23,6 +23,9 @@ public class PermisoService {
     public Optional<Permiso> findPermisoById(int id) {
         return permisoRepository.findById(id);
     }
+    public Optional<Permiso> findPermisoByNombre(String nombre) {
+        return permisoRepository.findPermisoByNombre(nombre);
+    }
 
     public boolean save(Permiso permiso) {
         permisoRepository.saveAndFlush(permiso);

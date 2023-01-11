@@ -29,9 +29,21 @@ public class PermisoRestController {
         }
     }
 
+    
+
     @GetMapping(value = "/{id_permiso}")
     public ResponseEntity<Permiso> getPermisoById(@PathVariable int id_permiso) {
         Optional<Permiso> permisoOptional = permisoService.findPermisoById(id_permiso);
+        if (permisoOptional.isPresent()) {
+            return new ResponseEntity<>(permisoOptional.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping(value = "ByNombre/{nombre}")
+    public ResponseEntity<Permiso> getPermisoByNombre(@PathVariable String nombre) {
+
+        Optional<Permiso> permisoOptional = permisoService.findPermisoByNombre(nombre);
         if (permisoOptional.isPresent()) {
             return new ResponseEntity<>(permisoOptional.get(), HttpStatus.OK);
         } else {

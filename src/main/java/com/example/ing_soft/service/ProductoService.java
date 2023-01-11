@@ -1,5 +1,6 @@
 package com.example.ing_soft.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -115,5 +116,18 @@ public class ProductoService {
             return false;
 
         }
+    }
+
+    public List<Producto>listarProductosSinStock(){
+        List<Producto> productos=productoRepository.findAll();
+        ArrayList<Producto> sinStock=new ArrayList<>();
+
+        for (int i = 0; i < productos.size(); i++) {
+            if(productos.get(i).getStock()==0){
+                sinStock.add(productos.get(i));
+            }
+        }
+        
+        return sinStock;
     }
 }
