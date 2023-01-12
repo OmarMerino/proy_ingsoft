@@ -48,7 +48,7 @@ public class UsuarioServiceTest {
         Usuario usuario = new Usuario();
         when(usuarioRepository.findById(12345678 - 9)).thenReturn(Optional.of(usuario));
         // Act
-        boolean result = usuarioService.deleteUsuarioByRut(12345678 - 9);
+        boolean result = usuarioService.deleteUsuarioById(12345678 - 9);
         // Assert
         assertTrue(result);
     }
@@ -58,7 +58,7 @@ public class UsuarioServiceTest {
         // Arrange
         when(usuarioRepository.findById(12345678 - 9)).thenReturn(Optional.empty());
         // Act
-        boolean result = usuarioService.deleteUsuarioByRut(12345678 - 9);
+        boolean result = usuarioService.deleteUsuarioById(12345678 - 9);
         // Assert
         assertFalse(result);
     }
